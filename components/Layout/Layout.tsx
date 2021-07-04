@@ -1,14 +1,30 @@
 import Head from "next/head";
-import { useSession, signIn, signOut } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import Navbar from "../Layout/Navbar";
 import Footer from "./Footer";
+import router from "next/router";
+import { useContext } from "react";
+import Loading from "../Loading/Loading";
+import { useEffect } from "react";
+import authContext from "../../context/authContext";
+
 interface IProps {
   page: string;
   children: JSX.Element;
 }
 
 export default function Layout({ page, children }: IProps): JSX.Element {
-  const [session] = useSession();
+  const [session, loading] = useSession();
+
+  const { token } = useContext(authContext);
+  useEffect(() => {
+    // if (!token) {
+    //   router.push("/api/auth/login");
+    // }
+  }, [token]);
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="w-full bg-rocket bg-cover bg-center flex flex-col items-center align-middle justify-between h-screen">
       <Head>
@@ -40,6 +56,7 @@ export default function Layout({ page, children }: IProps): JSX.Element {
         <meta name="theme-color" content="#317EFB" />
       </Head>
       <Navbar />
+
       {children}
       <Footer />
     </div>
