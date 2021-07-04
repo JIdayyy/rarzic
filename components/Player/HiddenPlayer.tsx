@@ -1,12 +1,15 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { trackIndex, trackList, isPlaying } from "../../State/States";
-export default function HiddenPlayer(): JSX.Element {
-  const audioRef = useRef<HTMLAudioElement>();
+import { playerState } from "../../State/States";
+export default function HiddenPlayer({ audioRef }): JSX.Element {
   const [tracks] = useRecoilState(trackList);
   const [index] = useRecoilState(trackIndex);
   const [playing] = useRecoilState(isPlaying);
+  const [player, setPlayer] = useRecoilState(playerState);
+  const [sliderValue, setSliderValue] = useState(0);
 
+  console.log(player);
   useEffect(() => {
     if (!playing) {
       return audioRef.current.pause();
@@ -16,6 +19,21 @@ export default function HiddenPlayer(): JSX.Element {
       audioRef.current.play();
     }
   }, [playing, index]);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      if (audioRef.current.currentTime > 0) {
+        setPlayer({
+          currentTime: Math.floor(audioRef.current.currentTime),
+          duration: Math.floor(audioRef.current.duration),
+        });
+        setSliderValue(audioRef.current.currentTime);
+      }
+    }, 100);
+    return function () {
+      clearInterval(timer);
+    };
+  }, [sliderValue, audioRef]);
 
   return (
     <div className="z-50 absolute h-32 w-96">

@@ -6,7 +6,7 @@ const trackList = atom({
 });
 
 const trackIndex = atom({
-  key: "playerState",
+  key: "indexState",
   default: 0,
 });
 
@@ -15,4 +15,12 @@ const isPlaying = atom({
   default: false,
 });
 
-export { trackIndex, trackList, isPlaying };
+const playerState = atom({
+  key: "playerState",
+  default: {
+    currentTime: 0,
+    duration: 0,
+  },
+});
+
+export { trackIndex, playerState, trackList, isPlaying };

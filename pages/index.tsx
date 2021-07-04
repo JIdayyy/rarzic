@@ -2,7 +2,7 @@ import Carroussel from "../components/Carroussel/Carroussel";
 import HiddenPlayer from "../components/Player/HiddenPlayer";
 import { useQuery } from "react-query";
 import { useRecoilState } from "recoil";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { trackList } from "../State/States";
 import Playbar from "../components/PlayBar/Playbar";
 import Error from "../components/Error/Error";
@@ -12,6 +12,7 @@ import axios from "axios";
 export default function Home() {
   const [tracks, setTracks] = useRecoilState(trackList);
   const [err, setErr] = useState<IError>();
+  const audioRef = useRef<HTMLAudioElement>();
   const { data, isLoading, error } = useQuery("tracks", () => {
     axios({
       url: process.env.NEXT_PUBLIC_API_URL,
@@ -40,8 +41,8 @@ export default function Home() {
         </div>
       </div>
       {tracks[0] && <Carroussel />}
-      {tracks[0] && <HiddenPlayer />}
-      <Playbar />
+      {tracks[0] && <HiddenPlayer audioRef={audioRef} />}
+      <Playbar audioRef={audioRef} />
     </div>
   );
 }

@@ -1,10 +1,17 @@
 import { useRecoilState } from "recoil";
-import { trackIndex, trackList, isPlaying } from "../../State/States";
-
-export default function Playbar() {
+import { useRef } from "react";
+import {
+  trackIndex,
+  trackList,
+  isPlaying,
+  playerState,
+} from "../../State/States";
+import { useEffect } from "react";
+export default function Playbar({ audioRef }) {
   const [tracks] = useRecoilState(trackList);
   const [index, setIndex] = useRecoilState(trackIndex);
   const [playing, setPlaying] = useRecoilState(isPlaying);
+  const [player, setPlayer] = useRecoilState(playerState);
 
   const handleForward = () => {
     if (index === tracks.length) {
@@ -17,6 +24,10 @@ export default function Playbar() {
       return setIndex(0);
     }
     setIndex((c) => c - 1);
+  };
+  const positionChange = (e) => {
+    setPlayer({ ...player, currentTime: e.target.value });
+    audioRef.current.currentTime = e.target.value;
   };
 
   return (
@@ -49,6 +60,9 @@ export default function Playbar() {
                 <input
                   type="range"
                   min="0"
+                  onChange={positionChange}
+                  max={player.duration}
+                  value={player.currentTime}
                   className=" h-1.5 bg-white rounded slider"
                   id="myRange"
                 ></input>
