@@ -16,7 +16,7 @@ class ErrorBoundary extends React.Component {
   }
 
   render() {
-    if (this.state.hasError) {
+    if (this.state.hasError === true) {
       // Vous pouvez afficher n'importe quelle UI de repli.
       return <h1>Something went wrong.</h1>;
     }

@@ -1,5 +1,6 @@
 import "tailwindcss/tailwind.css";
 import "../style/style.css";
+import "../style/scrollbarWebkit.css";
 import ErrorBoundary from "../components/Error/ErrorBoundary";
 import { RecoilRoot } from "recoil";
 import Layout from "../components/Layout/Layout";

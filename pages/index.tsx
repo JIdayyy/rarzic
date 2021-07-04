@@ -32,8 +32,8 @@ export default function Home() {
   }
 
   return (
-    <div className="w-full h-full flex flex-col px-16 items-center align-middle justify-between">
-      <Carroussel />
+    <div className="w-full h-full flex flex-col px-4 md:px-16 items-center align-middle justify-between">
+      {tracks[0] && <Carroussel />}
       {tracks[0] && <HiddenPlayer />}
       <Playbar />
     </div>
