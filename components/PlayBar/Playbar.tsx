@@ -28,7 +28,7 @@ export default function Playbar() {
           alt=""
         />
 
-        <div className="flex-row w-6/12 flex justify-center overflow-hidden item-center align-middle ">
+        <div className="flex-row hidden w-6/12 md:flex justify-center overflow-hidden item-center align-middle ">
           <div className="flex w-full overflow-hidden ">
             <div className="text-white whitespace-nowrap text-2xl text-center   txt font-cuprum  ">
               {tracks[index].title} - {tracks[index].artist.name} -{" "}
@@ -41,7 +41,7 @@ export default function Playbar() {
           </div>
         </div>
 
-        <div className="w-6/12 flex align-middle item-center justify-center mr-3">
+        <div className="w-6/12 hidden md:flex align-middle item-center justify-center mr-3">
           <div className="w-4/5 mr-6 h-full flex align-middle item-center justify-center">
             <div className="w-4/5">
               <div className="w-full">
@@ -57,7 +57,7 @@ export default function Playbar() {
             </div>
           </div>
         </div>
-        <div className="flex w-1/2 items-center align-middle justify-center">
+        <div className="flex  md:w-1/2 items-center align-middle justify-center">
           <img
             className="w-5 active:scale-90 mx-4"
             onClick={handleBackward}
