@@ -22,29 +22,30 @@ export default function Playbar() {
   return (
     <div className="w-full absolute flex justify-between bottom-0 h-20 items-center  bg-Gray">
       <div className="h-full"></div>
-      <div className="flex  justify-between">
+      <img className="w-20" src={tracks[index].album.picture} alt="" />
+      <div className="flex items-center align-middle w-full justify-between">
         <img
-          className="h-10 mx-4"
+          className="w-5 active:scale-90 mx-4"
           onClick={handleBackward}
           src={"/controls/backward.png"}
         />
         <img
-          className="h-10 mx-4"
+          className="w-5 active:scale-90 mx-4"
           onClick={() => setPlaying(true)}
           src={"/controls/play.png"}
         />
         <img
-          className="h-10 mx-4"
+          className="w-5 active:scale-90 mx-4"
           onClick={() => setPlaying(false)}
           src={"/controls/pause.png"}
         />
         <img
-          className="h-10 mx-4"
+          className="w-5 active:scale-90 mx-4"
           onClick={handleForward}
           src={"/controls/forward.png"}
         />
         <img
-          className="h-10 mx-4"
+          className="w-5 active:scale-90 mx-4"
           onClick={handleForward}
           src={"/controls/repeat.png"}
         />

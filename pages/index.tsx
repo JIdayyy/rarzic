@@ -32,9 +32,9 @@ export default function Home() {
   }
 
   return (
-    <div className="w-full h-full flex flex-col py-20 px-4 md:px-16 items-center justify-start ">
+    <div className="w-full h-full flex flex-col py-10 md:py-20 px-4 md:px-16 items-center justify-start ">
       <div className="w-full flex flex-col items-start align-middle justify-center ">
-        <div className="bg-gray-400 px-4 py-2 text-4xl text-white font-Share rounded-tl-xl flex justify-center  rounded-tr-xl rounded-bl-xl border-2">
+        <div className="bg-gray-400 px-4 py-2 text-xl text-white font-Share rounded-tl-xl flex justify-center  rounded-tr-xl rounded-bl-xl border-2">
           {" "}
           TOP 10
         </div>
