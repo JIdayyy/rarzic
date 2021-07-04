@@ -15,6 +15,11 @@ const isPlaying = atom({
   default: false,
 });
 
+const onSearch = atom({
+  key: "searchBar",
+  default: "",
+});
+
 const userState = atom({
   key: "usetState",
   default: {
@@ -33,4 +38,4 @@ const playerState = atom({
   },
 });
 
-export { trackIndex, userState, playerState, trackList, isPlaying };
+export { trackIndex, onSearch, userState, playerState, trackList, isPlaying };

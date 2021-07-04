@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { useRef, useState } from "react";
-import { trackList } from "../../State/States";
+import { onSearch, trackList } from "../../State/States";
 
 import useScrollBox from "../../utils/scroll";
 import NewCard from "../Carroussel/NewCard";
@@ -10,6 +10,8 @@ export default function Carroussel() {
   const { isDragging } = useScrollBox(scrollWrapperRef);
   const [isClicked, setIsClicked] = useState();
   const [tracks, setTracks] = useRecoilState(trackList);
+  const [search, setSeatch] = useRecoilState(onSearch);
+  console.log(search);
 
   return (
     <div
@@ -18,19 +20,26 @@ export default function Carroussel() {
     >
       <div className=" flex  items-center align-middle px-4 h-full">
         {tracks[0] &&
-          tracks.map((track, index) => {
-            return (
-              <div className="h-full" key={index}>
-                {/* <Card setIsClicked={setIsClicked} track={track} index={index} /> */}
-                <NewCard
-                  setIsClicked={setIsClicked}
-                  track={track}
-                  index={index}
-                />
-                <div className="hidden">{isDragging}</div>
-              </div>
-            );
-          })}
+          tracks
+            .filter(
+              (track) =>
+                track.title.toLowerCase().includes(search) ||
+                track.album.title.toLowerCase().includes(search) ||
+                track.artist.name.toLowerCase().includes(search)
+            )
+            .map((track, index) => {
+              return (
+                <div className="h-full" key={index}>
+                  {/* <Card setIsClicked={setIsClicked} track={track} index={index} /> */}
+                  <NewCard
+                    setIsClicked={setIsClicked}
+                    track={track}
+                    index={index}
+                  />
+                  <div className="hidden">{isDragging}</div>
+                </div>
+              );
+            })}
       </div>
     </div>
   );
