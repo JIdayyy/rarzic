@@ -37,14 +37,16 @@ export default function Card({ index, track, setIsClicked }) {
         <span className=" w-full h-full hover:block hidden z-40 text-white font-bold p-7 text-2xl">
           {track.duration}
         </span>
-        <button
-          onClick={handleClick}
-          className="absolute  items-end justify-end flex w-full z-50 bottom-0 text-white font-bold p-7 text-2xl"
-        >
-          <div className="border-4  items-end justify-end active:bg-gray-600 active:scale-90 rounded-full p-3">
-            <Image width={30} height={25} src={"/controls/play.png"} />
-          </div>
-        </button>
+        <div className="w-full items-end justify-end flex  ">
+          <button
+            onClick={handleClick}
+            className="absolute   z-50 bottom-0 text-white font-bold p-7 text-2xl"
+          >
+            <div className="border-4  items-end justify-end active:bg-gray-600 active:scale-90 rounded-full p-3">
+              <Image width={30} height={25} src={"/controls/play.png"} />
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   );

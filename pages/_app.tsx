@@ -1,5 +1,6 @@
 import "tailwindcss/tailwind.css";
 import "../style/style.css";
+import "../style/playbar.css";
 import { Provider, useSession } from "next-auth/client";
 import authContext from "../context/authContext";
 import "../style/scrollbarWebkit.css";
