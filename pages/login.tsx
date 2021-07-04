@@ -6,9 +6,7 @@ import { useContext } from "react";
 import authContext from "../context/authContext";
 
 export default function Login() {
-  console.log(router);
   const { token, setToken } = useContext(authContext);
-  console.log(session);
 
   const handleLogin = () => {
     signIn();

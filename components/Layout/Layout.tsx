@@ -18,6 +18,7 @@ export default function Layout({ page, children }: IProps): JSX.Element {
 
   const { token } = useContext(authContext);
   useEffect(() => {
+    console.log(session);
     if (typeof session === "undefined") {
       router.push("/login");
     } else {
