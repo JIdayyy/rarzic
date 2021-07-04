@@ -13,13 +13,13 @@ export default function Carroussel() {
   return (
     <div
       ref={scrollWrapperRef}
-      className=" w-full my-4  h-full md:h-96 sidebar md:border-gray-600 flex p-4 overflow-x-auto rounded-xl md:bg-Gray"
+      className=" w-full my-4  h-1/2 md:h-64 items-center align-middle sidebar md:border-gray-600 flex p-4 overflow-x-auto rounded-xl bg-Gray"
     >
-      <div className=" flex  px-4 h-full">
+      <div className=" flex  items-center align-middle px-4 h-full">
         {tracks[0] &&
           tracks.map((track, index) => {
             return (
-              <div key={index}>
+              <div className="h-full" key={index}>
                 <Card setIsClicked={setIsClicked} track={track} index={index} />
                 <div className="hidden">{isDragging}</div>
               </div>
