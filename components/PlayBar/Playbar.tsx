@@ -37,11 +37,11 @@ export default function Playbar({ audioRef }) {
     }
   }, [player]);
   return (
-    <div className="w-full absolute font-Share text-white text-xl flex justify-center bottom-0 h-20 items-center  bg-Gray">
+    <div className="w-full absolute  overflow-x-hidden font-Share text-white text-xl flex justify-center bottom-0 h-20 items-center  bg-Gray">
       <div className="flex items-center justify-between align-middle  h-full  w-full ">
         <img
           className="w-20 flex h-full"
-          src={tracks[index].album.picture}
+          src={tracks[index].album.picture || "/rocket.png"}
           alt=""
         />
 

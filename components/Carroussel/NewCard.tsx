@@ -27,9 +27,7 @@ export default function NewCard({ index, track, setIsClicked }) {
       ></div>
       <div className="w-40 text-white flex flex-col font-Share  overflow-ellipsis p-4  h-full">
         <span className="font-bold  w-full"> {track.artist.name}</span>
-        <span className="text-sm overflow-ellipsis overflow-y-auto  w-full">
-          {track.title}
-        </span>
+        <span className="text-sm overflow-ellipsis  w-full">{track.title}</span>
       </div>
       <div className="w-full items-end justify-end flex  ">
         <button
