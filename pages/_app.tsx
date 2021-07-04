@@ -1,4 +1,6 @@
 import "tailwindcss/tailwind.css";
+import "../style/style.css";
+import ErrorBoundary from "../components/Error/ErrorBoundary";
 import { RecoilRoot } from "recoil";
 import Layout from "../components/Layout/Layout";
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -8,7 +10,9 @@ function MyApp({ Component, pageProps }): JSX.Element {
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
         <Layout page="Home">
-          <Component {...pageProps} />
+          <ErrorBoundary>
+            <Component {...pageProps} />
+          </ErrorBoundary>
         </Layout>
       </QueryClientProvider>
     </RecoilRoot>

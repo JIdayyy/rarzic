@@ -2,28 +2,40 @@ import Carroussel from "../components/Carroussel/Carroussel";
 import HiddenPlayer from "../components/Player/HiddenPlayer";
 import { useQuery } from "react-query";
 import { useRecoilState } from "recoil";
-import { trackState, ITracks } from "../State/States";
-
+import { useState } from "react";
+import { trackList } from "../State/States";
+import Playbar from "../components/PlayBar/Playbar";
+import Error from "../components/Error/Error";
+import Loading from "../components/Loading/Loading";
 import axios from "axios";
 
 export default function Home() {
-  const [player, setPlayer] = useRecoilState(trackState);
-  const { data } = useQuery("tracks", () => {
+  const [tracks, setTracks] = useRecoilState(trackList);
+  const [err, setErr] = useState<IError>();
+  const { data, isLoading, error } = useQuery("tracks", () => {
     axios({
-      url: "https://api-bazify.basile.vernouillet.dev/api/v1/songs",
+      url: process.env.NEXT_PUBLIC_API_URL,
       method: "GET",
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpJZGF5eXkiLCJpYXQiOjE2MjUzNDc2NjMsImV4cCI6MTYyNTQzNDA2M30.GkJ5AEcXnIm0fAnw6Bi7B6C0oOkFVrYfkluGJRTg9CE",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
       },
-    }).then((r) => setPlayer(r.data as any));
+    })
+      .then((r) => setTracks(r.data as any))
+      .catch((err) => setErr(err));
   });
 
-  console.log(player);
+  if (err) {
+    return <Error message={err.message} />;
+  }
+  if (!tracks[0]) {
+    return <Loading />;
+  }
+
   return (
-    <div className="w-full h-full flex px-16 items-center align-middle justify-center">
+    <div className="w-full h-full flex flex-col px-16 items-center align-middle justify-between">
       <Carroussel />
-      {player[0] && <HiddenPlayer />}
+      {tracks[0] && <HiddenPlayer />}
+      <Playbar />
     </div>
   );
 }

@@ -1,29 +1,18 @@
 import { atom } from "recoil";
 
-export interface ITracks {
-  id: string;
-  album: {
-    picture: string;
-    title: string;
-  };
-  artist: {
-    name: string;
-    picture: string;
-  };
-  duration: string;
-  playlists: [string];
-  s3_link: string;
-  title: string;
-}
-
-const trackState = atom({
-  key: "trackState",
+const trackList = atom({
+  key: "trackListState",
   default: [] as ITracks[],
 });
 
-const playerState = atom({
+const trackIndex = atom({
   key: "playerState",
   default: 0,
 });
 
-export { playerState, trackState };
+const isPlaying = atom({
+  key: "playState",
+  default: false,
+});
+
+export { trackIndex, trackList, isPlaying };

@@ -7,6 +7,9 @@ module.exports = {
       backgroundImage: (theme) => ({
         rocket: "url('/rocket.webp')",
       }),
+      colors: {
+        Gray: "#1F1F1F",
+      },
     },
   },
   variants: {
