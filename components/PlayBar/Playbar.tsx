@@ -43,6 +43,11 @@ export default function Playbar() {
           onClick={handleForward}
           src={"/controls/forward.png"}
         />
+        <img
+          className="h-10 mx-4"
+          onClick={handleForward}
+          src={"/controls/repeat.png"}
+        />
       </div>
     </div>
   );

@@ -11,6 +11,10 @@ module.exports = {
         Gray: "#1F1F1F",
       },
     },
+    fontFamily: {
+      Share: ["Share Tech Mono"],
+      MyFont: ['"My Font"', "serif"], // Ensure fonts with spaces have " " surrounding it.
+    },
   },
   variants: {
     extend: {

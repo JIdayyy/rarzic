@@ -20,7 +20,7 @@ export default function Card({ index, track, setIsClicked }) {
   return (
     <div
       onMouseDown={() => setIsClicked(true)}
-      onMouseUp={() => setIsClicked(false)}
+      onMouseUp={() => setIsClicked(true)}
       style={background}
       key={index}
       className=" mx-4 border-2 hover:bg-opacity-5 hover:scale-105 rounded-xl flex flex-col  w-96 relative h-full"
