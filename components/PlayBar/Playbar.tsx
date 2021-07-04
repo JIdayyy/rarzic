@@ -20,8 +20,8 @@ export default function Playbar() {
   };
 
   return (
-    <div className="w-full absolute font-Share text-white text-xl flex justify-between bottom-0 h-20 items-center  bg-Gray">
-      <div className="flex items-center  h-full  w-full ">
+    <div className="w-full absolute font-Share text-white text-xl flex justify-center bottom-0 h-20 items-center  bg-Gray">
+      <div className="flex items-center justify-between align-middle  h-full  w-full ">
         <img
           className="w-20 flex h-full"
           src={tracks[index].album.picture}
@@ -57,7 +57,7 @@ export default function Playbar() {
             </div>
           </div>
         </div>
-        <div className="flex  md:w-1/2 items-center align-middle justify-center">
+        <div className="flex w-full md:w-1/2 items-center align-middle justify-center">
           <img
             className="w-5 active:scale-90 mx-4"
             onClick={handleBackward}
