@@ -1,8 +1,8 @@
 {
   "name": "Ride A Rocket",
-  "short_name": "Next PWA",
-  "theme_color": "#ffffff",
-  "background_color": "#004740",
+  "short_name": "RaR Music",
+  "theme_color": "#1F1F1F",
+  "background_color": "#1F1F1F",
   "display": "fullscreen",
   "orientation": "portrait",
   "scope": "/",
