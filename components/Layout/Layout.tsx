@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useSession, signIn, signOut } from "next-auth/client";
 import Navbar from "../Layout/Navbar";
 import Footer from "./Footer";
 interface IProps {
@@ -7,6 +8,7 @@ interface IProps {
 }
 
 export default function Layout({ page, children }: IProps): JSX.Element {
+  const [session] = useSession();
   return (
     <div className="w-full bg-rocket bg-cover bg-center flex flex-col items-center align-middle justify-between h-screen">
       <Head>

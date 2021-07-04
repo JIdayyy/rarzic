@@ -1,5 +1,6 @@
 import "tailwindcss/tailwind.css";
 import "../style/style.css";
+import { Provider } from "next-auth/client";
 import "../style/scrollbarWebkit.css";
 import ErrorBoundary from "../components/Error/ErrorBoundary";
 import { RecoilRoot } from "recoil";
@@ -8,15 +9,17 @@ import { QueryClientProvider, QueryClient } from "react-query";
 const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }): JSX.Element {
   return (
-    <RecoilRoot>
-      <QueryClientProvider client={queryClient}>
-        <Layout page="Home">
-          <ErrorBoundary>
-            <Component {...pageProps} />
-          </ErrorBoundary>
-        </Layout>
-      </QueryClientProvider>
-    </RecoilRoot>
+    <Provider session={pageProps.session}>
+      <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+          <Layout page="Home">
+            <ErrorBoundary>
+              <Component {...pageProps} />
+            </ErrorBoundary>
+          </Layout>
+        </QueryClientProvider>
+      </RecoilRoot>
+    </Provider>
   );
 }
 
