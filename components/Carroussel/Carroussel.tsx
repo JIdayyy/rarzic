@@ -16,7 +16,7 @@ export default function Carroussel() {
   return (
     <div
       ref={scrollWrapperRef}
-      className=" w-full my-4   md:h-96 items-center align-middle sidebar md:border-gray-600 flex p-4 overflow-x-auto rounded-xl "
+      className=" w-full my-4  h-96 md:h-96 items-center align-middle sidebar md:border-gray-600 flex p-4 overflow-x-auto rounded-xl "
     >
       <div className=" flex  items-center align-middle px-4 h-full">
         {tracks[0] &&
