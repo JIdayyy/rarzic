@@ -6,7 +6,6 @@ import { useContext } from "react";
 import authContext from "../context/authContext";
 
 export default function Login() {
-  const [session, loading] = useSession();
   console.log(router);
   const { token, setToken } = useContext(authContext);
   console.log(session);
@@ -15,10 +14,6 @@ export default function Login() {
     signIn();
     router.push("/");
   };
-
-  useEffect(() => {
-    console.log(session);
-  }, [session, loading]);
 
   return (
     <div className="w-full text-white font-bold h-screen bg-mainColor flex-col  flex items-center align-middle justify-center">

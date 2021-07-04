@@ -17,13 +17,13 @@ export default function Layout({ page, children }: IProps): JSX.Element {
   const [session, loading] = useSession();
 
   const { token } = useContext(authContext);
-  // useEffect(() => {
-  //   if (typeof session === "undefined") {
-  //     router.push("/login");
-  //   } else {
-  //     router.push("/");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (typeof session === "undefined") {
+      router.push("/login");
+    } else {
+      router.push("/");
+    }
+  }, [session, loading]);
 
   if (loading) {
     return <Loading />;
