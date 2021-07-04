@@ -4,21 +4,21 @@ import { trackIndex, trackList, isPlaying } from "../../State/States";
 import { playerState } from "../../State/States";
 export default function HiddenPlayer({ audioRef }): JSX.Element {
   const [tracks] = useRecoilState(trackList);
-  const [index] = useRecoilState(trackIndex);
+  const [index, setIndex] = useRecoilState(trackIndex);
   const [playing] = useRecoilState(isPlaying);
   const [player, setPlayer] = useRecoilState(playerState);
   const [sliderValue, setSliderValue] = useState(0);
 
-  console.log(player);
   useEffect(() => {
     if (!playing) {
       return audioRef.current.pause();
     }
+
     if (audioRef.current && playing) {
       audioRef.current.load();
       audioRef.current.play();
     }
-  }, [playing, index]);
+  }, [playing, index, player.duration]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {

@@ -1,4 +1,5 @@
 import { useRecoilState } from "recoil";
+import { useEffect } from "react";
 import secondToHMS from "../../utils/secontToHMS";
 import {
   trackIndex,
@@ -30,6 +31,11 @@ export default function Playbar({ audioRef }) {
     audioRef.current.currentTime = e.target.value;
   };
 
+  useEffect(() => {
+    if (player.currentTime === player.duration) {
+      handleForward();
+    }
+  }, [player]);
   return (
     <div className="w-full absolute font-Share text-white text-xl flex justify-center bottom-0 h-20 items-center  bg-Gray">
       <div className="flex items-center justify-between align-middle  h-full  w-full ">
