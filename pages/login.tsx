@@ -5,7 +5,7 @@ import router from "next/router";
 import { useContext } from "react";
 import authContext from "../context/authContext";
 
-export default function login() {
+export default function Login() {
   const [session, loading] = useSession();
   console.log(router);
   const { token, setToken } = useContext(authContext);
