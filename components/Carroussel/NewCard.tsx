@@ -18,12 +18,12 @@ export default function NewCard({ index, track, setIsClicked }) {
     setIsPlaying(true);
   };
   return (
-    <div className="mx-4 bg-Gray relative  rounded-xl p-6 w-72 h-full">
+    <div className="mx-4 bg-Gray relative  rounded-sm p-2 w-60 h-full">
       <div
         onMouseDown={() => setIsClicked(true)}
         onMouseUp={() => setIsClicked(true)}
         style={background}
-        className=" rounded-xl w-full h-4/6"
+        className=" rounded-md w-full h-4/6"
       ></div>
       <div className="w-40 text-white flex flex-col font-Share  overflow-ellipsis p-4  h-full">
         <span className="font-bold  w-full"> {track.artist.name}</span>
