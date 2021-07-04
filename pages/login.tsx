@@ -2,23 +2,31 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { session, signIn, signOut, useSession } from "next-auth/client";
 import router from "next/router";
+import { useContext } from "react";
+import authContext from "../context/authContext";
 
 export default function login() {
   const [session, loading] = useSession();
+  console.log(router);
+  const { token, setToken } = useContext(authContext);
+  console.log(session);
+
+  const handleLogin = () => {
+    signIn();
+    router.push("/");
+  };
+
   useEffect(() => {
-    if (session.user === null) {
-      router.push("/");
-    } else {
-      router.push("/");
-    }
-  }, [session]);
+    console.log(session);
+  }, [session, loading]);
+
   return (
     <div className="w-full text-white font-bold h-screen bg-mainColor flex-col  flex items-center align-middle justify-center">
       <p className="text-red-900">
         During deployment only github auth is working.
         <button
           className="text-red-700 text-2xl border border-red-400 rounded-md px-4 py-2 mx-4"
-          onClick={signIn}
+          onClick={handleLogin}
         >
           SIGN IN HERE !
         </button>
