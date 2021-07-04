@@ -22,8 +22,8 @@ export default function Playbar() {
   return (
     <div className="w-full absolute flex justify-between bottom-0 h-20 items-center  bg-Gray">
       <div className="h-full"></div>
-      <img className="w-20" src={tracks[index].album.picture} alt="" />
-      <div className="flex items-center align-middle w-full justify-between">
+      <div className="flex items-center h-full align-middle w-full justify-between">
+        <img className="w-20 h-full" src={tracks[index].album.picture} alt="" />
         <img
           className="w-5 active:scale-90 mx-4"
           onClick={handleBackward}
