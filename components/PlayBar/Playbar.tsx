@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-
+import secondToHMS from "../../utils/secontToHMS";
 import {
   trackIndex,
   trackList,
@@ -52,22 +52,25 @@ export default function Playbar({ audioRef }) {
           </div>
         </div>
 
-        <div className="w-6/12 hidden md:flex align-middle item-center justify-center mr-3">
+        <div className="w-6/12 hidden md:flex align-middle h-full item-center justify-center mr-3">
           <div className="w-4/5 mr-6 h-full flex align-middle item-center justify-center">
-            <div className="w-4/5">
-              <div className="w-full">
-                <div className="endTime"></div>
-                <input
-                  type="range"
-                  min="0"
-                  onChange={positionChange}
-                  max={player.duration}
-                  value={player.currentTime}
-                  className=" h-1.5 bg-white rounded slider"
-                  id="myRange"
-                ></input>
-                <div className="endTime"></div>
-              </div>
+            <div className="endTime h-full text-white mx-2 flex flex-col items-center justify-center align-middle">
+              {secondToHMS(player.currentTime)}
+            </div>
+            <div className="flex flex-col items-center justify-center align-middle">
+              {" "}
+              <input
+                type="range"
+                min="0"
+                onChange={positionChange}
+                max={player.duration}
+                value={player.currentTime}
+                className=" h-1.5 bg-white   rounded slider"
+                id="myRange"
+              ></input>
+            </div>
+            <div className="endTime flex flex-col items-center mx-2 justify-center align-middle">
+              {secondToHMS(player.duration)}
             </div>
           </div>
         </div>

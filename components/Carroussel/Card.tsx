@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { trackIndex, trackList, isPlaying } from "../../State/States";
 export default function Card({ index, track, setIsClicked }) {
   const [playing, setIsPlaying] = useRecoilState(isPlaying);
-  const [trackIndes, setTrackIndex] = useRecoilState(trackIndex);
+  const [trackStateIndex, setTrackStateIndex] = useRecoilState(trackIndex);
 
   const background = {
     backgroundImage: `url(${
@@ -15,7 +15,7 @@ export default function Card({ index, track, setIsClicked }) {
   };
 
   const handleClick = () => {
-    setTrackIndex(index);
+    setTrackStateIndex(index);
     setIsPlaying(true);
   };
   return (
