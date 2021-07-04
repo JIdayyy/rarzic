@@ -15,6 +15,16 @@ const isPlaying = atom({
   default: false,
 });
 
+const userState = atom({
+  key: "usetState",
+  default: {
+    id: "",
+    email: "",
+    firstname: "",
+    image: "",
+  },
+});
+
 const playerState = atom({
   key: "playerState",
   default: {
@@ -23,4 +33,4 @@ const playerState = atom({
   },
 });
 
-export { trackIndex, playerState, trackList, isPlaying };
+export { trackIndex, userState, playerState, trackList, isPlaying };

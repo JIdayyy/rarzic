@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { useEffect } from "react";
-import { session, signIn, signOut, useSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
+import { signIn } from "next-auth/client";
 import router from "next/router";
-import { useContext } from "react";
-import authContext from "../context/authContext";
-
+import { useRecoilState } from "recoil";
+import { userState } from "../State/States";
 export default function Login() {
-  const handleLogin = () => {
+  const handleLogin = async () => {
     signIn();
     router.push("/");
   };

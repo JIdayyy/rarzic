@@ -13,29 +13,18 @@ import { QueryClientProvider, QueryClient } from "react-query";
 const queryClient = new QueryClient();
 export default function MyApp({ Component, pageProps }): JSX.Element {
   const [session, loading] = useSession();
-  const [token, setToken] = useState(null);
+
   return (
-    <authContext.Provider
-      value={{
-        token,
-        setToken,
-      }}
-    >
-      <Provider session={pageProps.session}>
-        <RecoilRoot>
-          <QueryClientProvider client={queryClient}>
-            {typeof session === "undefined" ? (
-              <Layout page="Home">
-                <ErrorBoundary>
-                  <Component {...pageProps} />
-                </ErrorBoundary>
-              </Layout>
-            ) : (
-              <></>
-            )}
-          </QueryClientProvider>
-        </RecoilRoot>
-      </Provider>
-    </authContext.Provider>
+    <Provider session={pageProps.session}>
+      <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+          <Layout page="Home">
+            <ErrorBoundary>
+              <Component {...pageProps} />
+            </ErrorBoundary>
+          </Layout>
+        </QueryClientProvider>
+      </RecoilRoot>
+    </Provider>
   );
 }

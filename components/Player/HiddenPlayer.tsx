@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { trackIndex, trackList, isPlaying } from "../../State/States";
 import { playerState } from "../../State/States";

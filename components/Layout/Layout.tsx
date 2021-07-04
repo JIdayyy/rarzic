@@ -3,11 +3,11 @@ import { useSession } from "next-auth/client";
 import Navbar from "../Layout/Navbar";
 import Footer from "./Footer";
 import router from "next/router";
-import { useContext } from "react";
+
 import Loading from "../Loading/Loading";
 import { useEffect } from "react";
-import authContext from "../../context/authContext";
-
+import { userState } from "../../State/States";
+import { useRecoilState } from "recoil";
 interface IProps {
   page: string;
   children: JSX.Element;
@@ -15,13 +15,18 @@ interface IProps {
 
 export default function Layout({ page, children }: IProps): JSX.Element {
   const [session, loading] = useSession();
+  const [user, setUser] = useRecoilState(userState);
 
-  const { token } = useContext(authContext);
   useEffect(() => {
-    console.log(!loading && session);
     if (!session) {
       router.push("/login");
     } else if (session.user) {
+      setUser({
+        ...user,
+        firstname: session.user.name,
+        email: session.user.email,
+        image: session.user.image,
+      });
       router.push("/");
     }
   }, [session, loading]);

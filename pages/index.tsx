@@ -3,13 +3,14 @@ import HiddenPlayer from "../components/Player/HiddenPlayer";
 import { useQuery } from "react-query";
 import { useRecoilState } from "recoil";
 import { useState, useRef } from "react";
-import { trackList } from "../State/States";
+import { trackList, userState } from "../State/States";
 import Playbar from "../components/PlayBar/Playbar";
 import Error from "../components/Error/Error";
 import Loading from "../components/Loading/Loading";
 import axios from "axios";
 
 export default function Home() {
+  const [user, setUser] = useRecoilState(userState);
   const [tracks, setTracks] = useRecoilState(trackList);
   const [err, setErr] = useState<IError>();
   const audioRef = useRef<HTMLAudioElement>();

@@ -1,12 +1,12 @@
 import { useRecoilState } from "recoil";
-import { useRef } from "react";
+
 import {
   trackIndex,
   trackList,
   isPlaying,
   playerState,
 } from "../../State/States";
-import { useEffect } from "react";
+
 export default function Playbar({ audioRef }) {
   const [tracks] = useRecoilState(trackList);
   const [index, setIndex] = useRecoilState(trackIndex);
