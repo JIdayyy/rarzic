@@ -24,6 +24,7 @@ export default function HiddenPlayer({ audioRef }): JSX.Element {
     const timer = window.setInterval(() => {
       if (audioRef.current.currentTime > 0) {
         setPlayer({
+          ...player,
           currentTime: Math.floor(audioRef.current.currentTime),
           duration: Math.floor(audioRef.current.duration),
         });

@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import secondToHMS from "../../utils/secontToHMS";
 import {
   trackIndex,
@@ -13,7 +13,8 @@ export default function Playbar({ audioRef }) {
   const [index, setIndex] = useRecoilState(trackIndex);
   const [playing, setPlaying] = useRecoilState(isPlaying);
   const [player, setPlayer] = useRecoilState(playerState);
-
+  const [showVolume, setShowVolume] = useState(false);
+  const [volume, setVolume] = useState(0);
   const handleForward = () => {
     if (index === tracks.length) {
       return setIndex(0);
@@ -31,11 +32,21 @@ export default function Playbar({ audioRef }) {
     audioRef.current.currentTime = e.target.value;
   };
 
+  const handleVolume = (e) => {
+    if (e.target.value < 3) {
+      setVolume(0);
+      return (audioRef.current.volume = volume);
+    }
+    setVolume(e.target.value / 100);
+    audioRef.current.volume = volume;
+  };
+
   useEffect(() => {
     if (player.currentTime === player.duration) {
       handleForward();
     }
   }, [player]);
+
   return (
     <div className="w-full absolute  overflow-x-hidden font-Share text-white text-xl flex justify-center bottom-0 h-20 items-center  bg-Gray">
       <div className="flex items-center justify-between align-middle  h-full  w-full ">
@@ -75,36 +86,55 @@ export default function Playbar({ audioRef }) {
                 id="myRange"
               ></input>
             </div>
+            {showVolume && (
+              <div className="flex flex-col items-center fixed bottom-20 right-0  h-56 justify-center align-middle">
+                {" "}
+                <input
+                  type="range"
+                  min="0"
+                  onChange={handleVolume}
+                  max="100"
+                  className=" h-1.5 bg-white transform rotate-90 rounded slider"
+                  id="myRange"
+                ></input>
+              </div>
+            )}
             <div className="endTime flex flex-col items-center mx-2 justify-center align-middle">
               {secondToHMS(player.duration)}
             </div>
           </div>
         </div>
-        <div className="flex w-full md:w-1/2 items-center align-middle justify-center">
+        <div className="flex w-full md:w-1/2 items-center align-middle justify-end">
           <img
-            className="w-5 active:scale-90 mx-4"
+            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={handleBackward}
             src={"/controls/backward.png"}
           />
           <img
-            className="w-5 active:scale-90 mx-4"
+            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={() => setPlaying(true)}
             src={"/controls/play.png"}
           />
           <img
-            className="w-5 active:scale-90 mx-4"
+            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={() => setPlaying(false)}
             src={"/controls/pause.png"}
           />
           <img
-            className="w-5 active:scale-90 mx-4"
+            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={handleForward}
             src={"/controls/forward.png"}
           />
           <img
-            className="w-5 active:scale-90 mx-4"
+            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={handleForward}
             src={"/controls/repeat.png"}
+          />
+          <img
+            onClick={() => setShowVolume((c) => !c)}
+            className="w-5 active:scale-90 mx-4 cursor-pointer"
+            src="/volume.png"
+            alt=""
           />
         </div>
       </div>

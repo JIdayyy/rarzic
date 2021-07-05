@@ -7,6 +7,7 @@ input[type="range"].slider {
     background: rgb(255, 255, 255); /* sert pour couleur de fond de la zone de déplacement */
     box-sizing: border-box; /* même modèle de boîte pour tous */
     cursor: pointer;
+    
   }
   
   input[type="range"].slider::-webkit-slider-thumb {
