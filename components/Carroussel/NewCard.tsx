@@ -29,7 +29,7 @@ export default function NewCard({
     setIsPlaying(true);
   };
   return (
-    <div className="mx-4 bg-Gray relative hover:scale-110  rounded-sm p-2 w-60 h-full">
+    <div className="mx-4 bg-Gray relative hover:scale-110   rounded-sm p-2 w-60 h-96">
       <div
         onMouseDown={() => setIsClicked(true)}
         onMouseUp={() => setIsClicked(false)}
