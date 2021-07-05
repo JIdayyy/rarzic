@@ -16,14 +16,14 @@ export default function Playbar({ audioRef }) {
   const [showVolume, setShowVolume] = useState(false);
   const [volume, setVolume] = useState(0);
   const handleForward = () => {
-    if (index === tracks.length-1) {
+    if (index === tracks.length - 1) {
       return setIndex(0);
     }
     setIndex((c) => c + 1);
   };
   const handleBackward = () => {
     if (index === 0) {
-      return setIndex(tracks.length-1);
+      return setIndex(tracks.length - 1);
     }
     setIndex((c) => c - 1);
   };
@@ -104,7 +104,7 @@ export default function Playbar({ audioRef }) {
             </div>
           </div>
         </div>
-        <div className="flex w-full md:w-1/2 items-center align-middle justify-end">
+        <div className="flex w-full md:w-1/2 items-center mr-10 align-middle justify-end">
           <img
             className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={handleBackward}
@@ -127,7 +127,6 @@ export default function Playbar({ audioRef }) {
           />
           <img
             className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
-            
             src={"/controls/repeat.png"}
           />
           <img

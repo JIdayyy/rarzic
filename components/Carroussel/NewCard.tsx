@@ -18,16 +18,19 @@ export default function NewCard({ index, track, setIsClicked }) {
     setIsPlaying(true);
   };
   return (
-    <div className="mx-4 bg-Gray relative  rounded-sm p-2 w-60 h-full">
+    <div className="mx-4 bg-Gray relative hover:scale-110  rounded-sm p-2 w-60 h-full">
       <div
         onMouseDown={() => setIsClicked(true)}
         onMouseUp={() => setIsClicked(true)}
         style={background}
         className=" rounded-md w-full h-4/6"
       ></div>
-      <div className="w-40 text-white flex flex-col font-Share  overflow-ellipsis p-4  h-full">
+      <div className="w-40 text-white flex flex-col font-Share justify-between items-center align-middle  overflow-ellipsis p-4  ">
         <span className="font-bold  w-full"> {track.artist.name}</span>
         <span className="text-sm overflow-ellipsis  w-full">{track.title}</span>
+        <span className="text-sm overflow-ellipsis w-full">
+          {track.duration}
+        </span>
       </div>
       <div className="w-full items-end justify-end flex  ">
         <button
@@ -38,6 +41,7 @@ export default function NewCard({ index, track, setIsClicked }) {
             <Image
               quality={100}
               width={30}
+              className="hover:scale-110 active:scale"
               height={25}
               src={"/controls/play.png"}
             />
