@@ -1,17 +1,19 @@
 import Image from "next/image";
-import { Dispatch } from "react";
-import {  useRecoilState } from "recoil";
+import { Dispatch, SetStateAction } from "react";
+import { useRecoilState } from "recoil";
 import { trackIndex, isPlaying } from "../../State/States";
 
-
-interface ICard{
-  index: number,
-  track: ITracks,
-  setIsClicked : Dispatch<boolean>,
+interface ICard {
+  index: number;
+  track: ITracks;
+  setIsClicked: Dispatch<boolean>;
 }
 
-
-export default function NewCard({ index, track, setIsClicked }: ICard):JSX.Element {
+export default function NewCard({
+  index,
+  track,
+  setIsClicked,
+}: ICard): JSX.Element {
   const background = {
     backgroundImage: `url(${
       track.album.picture ? track.album.picture : "/rocket.png"
