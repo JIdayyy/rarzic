@@ -30,7 +30,6 @@ export default function Carroussel() {
             .map((track, index) => {
               return (
                 <div className="h-full" key={index}>
-                  {/* <Card setIsClicked={setIsClicked} track={track} index={index} /> */}
                   <NewCard
                     setIsClicked={setIsClicked}
                     track={track}
