@@ -60,7 +60,7 @@ export async function getServerSideProps(context : NextPageContext) {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
     },
   });
-  console.log(data.data);
+  
   return {
     props: {
       datas: data.data,

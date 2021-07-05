@@ -13,10 +13,10 @@ console.log(data)
 
 export async function getServerSideProps(context: Params) {
   const { id } = context.params;
-  console.log(`${process.env.NEXT_PUBLIC_API_URL_ALBUM}${id}`)
+  console.log(`${process.env.NEXT_PUBLIC_API_URL_ALBUM}`)
 const data = await axios({
   method : "GET",
-  url: `${process.env.NEXT_PUBLIC_API_URL_ALBUM}`,
+  url: `${process.env.NEXT_PUBLIC_API_URL_ALBUM}${id}`,
   headers: {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`
   }
@@ -24,7 +24,7 @@ const data = await axios({
   console.log(data.data)
   return {
     props: {
-      data: data
+      data: data.data
     },
   };
 }

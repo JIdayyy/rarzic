@@ -16,19 +16,19 @@ export default function Layout({ page, children }: IProps): JSX.Element {
   const [session, loading] = useSession();
   const [user, setUser] = useRecoilState<Session["user"]>(userState);
 
-  useEffect(() => {
-    if (!session) {
-      router.push("/login");
-    } else if (session.user) {
-      setUser({
-        ...user,
-        firstname: session.user.name!,
-        email: session.user.email!,
-        image: session.user.image!,
-      });
-      router.push("/");
-    }
-  }, [session, loading]);
+  // useEffect(() => {
+  //   if (!session) {
+  //     router.push("/login");
+  //   } else if (session.user) {
+  //     setUser({
+  //       ...user,
+  //       firstname: session.user.name!,
+  //       email: session.user.email!,
+  //       image: session.user.image!,
+  //     });
+  //     router.push("/");
+  //   }
+  // }, [session, loading]);
 
   if (loading) {
     return <Loading />;
