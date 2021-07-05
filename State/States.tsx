@@ -23,7 +23,6 @@ const onSearch = atom({
 const userState = atom({
   key: "usetState",
   default: {
-    id: "",
     email: "",
     firstname: "",
     image: "",

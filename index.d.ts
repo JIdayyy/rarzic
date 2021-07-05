@@ -17,3 +17,11 @@ interface ITracks {
   s3_link: string;
   title: string;
 }
+
+interface Session{
+ user: {
+  firstname: string ,
+  email: string ,
+  image: string 
+ }
+}

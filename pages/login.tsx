@@ -1,9 +1,6 @@
 import Link from "next/link";
-import { useSession } from "next-auth/client";
 import { signIn } from "next-auth/client";
 import router from "next/router";
-import { useRecoilState } from "recoil";
-import { userState } from "../State/States";
 export default function Login() {
   const handleLogin = async () => {
     signIn();

@@ -1,17 +1,16 @@
+import useScrollBox from "../../utils/scroll";
+import NewCard from "../Carroussel/NewCard";
 import { useRecoilState } from "recoil";
 import { useRef, useState } from "react";
 import { onSearch, trackList } from "../../State/States";
 
-import useScrollBox from "../../utils/scroll";
-import NewCard from "../Carroussel/NewCard";
-import Card from "./Card";
 export default function Carroussel() {
-  const scrollWrapperRef = useRef();
+  const scrollWrapperRef = useRef<HTMLDivElement | null>(null)
   const { isDragging } = useScrollBox(scrollWrapperRef);
-  const [isClicked, setIsClicked] = useState<boolean>(false);
-  const [tracks, setTracks] = useRecoilState(trackList);
-  const [search, setSeatch] = useRecoilState(onSearch);
-  console.log(search);
+  const [, setIsClicked] = useState<boolean>(false);
+  const [tracks] = useRecoilState(trackList);
+  const [search] = useRecoilState(onSearch);
+  
 
   return (
     <div
@@ -30,7 +29,6 @@ export default function Carroussel() {
             .map((track, index) => {
               return (
                 <div className="h-full" key={index}>
-                  {/* <Card setIsClicked={setIsClicked} track={track} index={index} /> */}
                   <NewCard
                     setIsClicked={setIsClicked}
                     track={track}

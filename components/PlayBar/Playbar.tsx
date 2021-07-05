@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { Ref, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import secondToHMS from "../../utils/secontToHMS";
 import {
   trackIndex,
@@ -7,7 +7,7 @@ import {
   isPlaying,
   playerState,
 } from "../../State/States";
-import { EventType } from "next-auth";
+
 
 export default function Playbar({ audioRef }: any):JSX.Element {
   const [tracks] = useRecoilState(trackList);
@@ -21,12 +21,14 @@ export default function Playbar({ audioRef }: any):JSX.Element {
       return setIndex(0);
     }
     setIndex((c) => c + 1);
+    audioRef.current.load()
   };
   const handleBackward = () => {
     if (index === 0) {
       return setIndex(tracks.length - 1);
     }
     setIndex((c) => c - 1);
+    audioRef.current.load()
   };
   const positionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlayer({ ...player, currentTime: parseInt(e.target.value) });
@@ -111,16 +113,16 @@ export default function Playbar({ audioRef }: any):JSX.Element {
             onClick={handleBackward}
             src={"/controls/backward.png"}
           />
-          <img
-            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
-            onClick={() => setPlaying(true)}
-            src={"/controls/play.png"}
-          />
-          <img
+          {playing ? <img
             className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={() => setPlaying(false)}
             src={"/controls/pause.png"}
-          />
+          /> : <img
+            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
+            onClick={() => setPlaying(true)}
+            src={"/controls/play.png"}
+          />}
+          
           <img
             className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={handleForward}

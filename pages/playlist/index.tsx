@@ -1,5 +1,5 @@
 import register from "../register";
 
-export default function Playlists(params) {
+export default function Playlists() {
   return <div></div>;
 }

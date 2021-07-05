@@ -3,7 +3,6 @@ import { useSession } from "next-auth/client";
 import Navbar from "../Layout/Navbar";
 import Footer from "./Footer";
 import router from "next/router";
-
 import Loading from "../Loading/Loading";
 import { useEffect } from "react";
 import { userState } from "../../State/States";
@@ -15,7 +14,7 @@ interface IProps {
 
 export default function Layout({ page, children }: IProps): JSX.Element {
   const [session, loading] = useSession();
-  const [user, setUser] = useRecoilState(userState);
+  const [user, setUser] = useRecoilState<Session["user"]>(userState);
 
   useEffect(() => {
     if (!session) {
@@ -23,9 +22,9 @@ export default function Layout({ page, children }: IProps): JSX.Element {
     } else if (session.user) {
       setUser({
         ...user,
-        firstname: session.user.name,
-        email: session.user.email,
-        image: session.user.image,
+        firstname: session.user.name!,
+        email: session.user.email!,
+        image: session.user.image!,
       });
       router.push("/");
     }

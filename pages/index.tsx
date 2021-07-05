@@ -1,24 +1,33 @@
 import Carroussel from "../components/Carroussel/Carroussel";
 import HiddenPlayer from "../components/Player/HiddenPlayer";
-import { useQuery, QueryClient } from "react-query";
 import { useRecoilState } from "recoil";
 import { useState, useRef, useEffect } from "react";
-import { onSearch, trackList, userState } from "../State/States";
+import {trackList } from "../State/States";
 import Playbar from "../components/PlayBar/Playbar";
 import Error from "../components/Error/Error";
 import Loading from "../components/Loading/Loading";
 import axios from "axios";
 import SearchBar from "../components/SearchBar/SearchBar";
-export default function Home({ datas }) {
+
+import { NextPageContext } from "next";
+import {getSession} from 'next-auth/client'
+
+
+interface IProps {
+  datas: Array<ITracks>,
+  session: any
+}
+
+export default function Home({ datas,session }:IProps) {
   const [tracks, setTracks] = useRecoilState(trackList);
+  const [err] = useState<IError>();
+  const audioRef = useRef<HTMLAudioElement | null >(null);
 
-  const [err, setErr] = useState<IError>();
-  const audioRef = useRef<HTMLAudioElement>();
-
-  useEffect(() => {
-    setTracks(datas);
-  }, []);
-
+ 
+  
+    useEffect(() => {
+      setTracks(datas);
+    }, []);
   if (err) {
     return <Error message={err.message} />;
   }
@@ -42,7 +51,8 @@ export default function Home({ datas }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context : NextPageContext) {
+  const session = await getSession(context)
   const data = await axios({
     url: process.env.NEXT_PUBLIC_API_URL,
     method: "GET",
@@ -54,6 +64,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       datas: data.data,
+      session: session,
     }, // will be passed to the page component as props
   };
 }

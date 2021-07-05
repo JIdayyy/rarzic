@@ -1,34 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { trackIndex, trackList, isPlaying } from "../../State/States";
 import { playerState } from "../../State/States";
-export default function HiddenPlayer({ audioRef }): JSX.Element {
+
+
+
+export default function HiddenPlayer({ audioRef }: any): JSX.Element {
   const [tracks] = useRecoilState(trackList);
   const [index, setIndex] = useRecoilState(trackIndex);
   const [playing] = useRecoilState(isPlaying);
   const [player, setPlayer] = useRecoilState(playerState);
-  const [sliderValue, setSliderValue] = useState(0);
+  const [sliderValue, setSliderValue] = useState<number>(0);
 
   useEffect(() => {
     if (!playing) {
-      return audioRef.current.pause();
+      return audioRef!.current!.pause();
     }
 
-    if (audioRef.current && playing) {
-      audioRef.current.load();
-      audioRef.current.play();
+    if (audioRef!.current && playing) {
+      audioRef!.current.play();
     }
   }, [playing, index, player.duration]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      if (audioRef.current.currentTime > 0) {
+      if (audioRef!.current!.currentTime > 0) {
         setPlayer({
           ...player,
-          currentTime: Math.floor(audioRef.current.currentTime),
-          duration: Math.floor(audioRef.current.duration),
+          currentTime: Math.floor(audioRef!.current!.currentTime),
+          duration: Math.floor(audioRef!.current!.duration),
         });
-        setSliderValue(audioRef.current.currentTime);
+        setSliderValue(audioRef!.current!.currentTime);
       }
     }, 100);
     return function () {

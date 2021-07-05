@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { Dispatch } from "react";
-import { SetStateAction } from "react";
-import { RecoilState, useRecoilState } from "recoil";
-import { trackIndex, trackList, isPlaying } from "../../State/States";
+import {  useRecoilState } from "recoil";
+import { trackIndex, isPlaying } from "../../State/States";
 
 
 interface ICard{
