@@ -22,8 +22,8 @@ export default function NewCard({
     backgroundRepeat: `no-repeat`,
     backgroundPosition: `center`,
   };
-  const [playing, setIsPlaying] = useRecoilState(isPlaying);
-  const [trackStateIndex, setTrackStateIndex] = useRecoilState(trackIndex);
+  const [, setIsPlaying] = useRecoilState(isPlaying);
+  const [, setTrackStateIndex] = useRecoilState(trackIndex);
   const handleClick = () => {
     setTrackStateIndex(index);
     setIsPlaying(true);

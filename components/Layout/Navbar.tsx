@@ -3,7 +3,7 @@ import { signout } from "next-auth/client";
 import { useRecoilState } from "recoil";
 import { userState } from "../../State/States";
 export default function Navbar(): JSX.Element {
-  const [user, setUser] = useRecoilState(userState);
+  const [user] = useRecoilState(userState);
   const handleLogout = () => {
     signout();
   };
