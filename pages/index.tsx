@@ -14,17 +14,7 @@ export default function Home({ datas }) {
 
   const [err, setErr] = useState<IError>();
   const audioRef = useRef<HTMLAudioElement>();
-  // const { data, isLoading, error } = useQuery("tracks", () => {
-  //   axios({
-  //     url: process.env.NEXT_PUBLIC_API_URL,
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
-  //     },
-  //   })
-  //     .then((r) => setTracks(r.data as any))
-  //     .catch((err) => setErr(err));
-  // });
+
   useEffect(() => {
     setTracks(datas);
   }, []);
@@ -38,7 +28,7 @@ export default function Home({ datas }) {
 
   return (
     <div className="w-full h-full  overflow-x-hidden flex flex-col py-10 md:py-20 px-4 md:px-16 items-center justify-start ">
-      <div className="w-full  flex md:flex-row-reverse flex-col items-start align-middle justify-between ">
+      <div className="w-full  flex md:flex-row-reverse flex-col items-center align-middle justify-between ">
         <SearchBar />
         <div className="bg-gray-400 px-4 my-2 md:my-0 py-2 text-xl text-white font-Share rounded-tl-xl flex justify-center  rounded-tr-xl rounded-bl-xl border-2">
           {" "}

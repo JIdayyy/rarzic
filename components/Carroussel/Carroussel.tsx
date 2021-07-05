@@ -8,7 +8,7 @@ import Card from "./Card";
 export default function Carroussel() {
   const scrollWrapperRef = useRef();
   const { isDragging } = useScrollBox(scrollWrapperRef);
-  const [isClicked, setIsClicked] = useState();
+  const [isClicked, setIsClicked] = useState<boolean>(false);
   const [tracks, setTracks] = useRecoilState(trackList);
   const [search, setSeatch] = useRecoilState(onSearch);
   console.log(search);

@@ -1,8 +1,18 @@
 import Image from "next/image";
-import { useRecoilState } from "recoil";
+import { Dispatch } from "react";
+import { SetStateAction } from "react";
+import { RecoilState, useRecoilState } from "recoil";
 import { trackIndex, trackList, isPlaying } from "../../State/States";
 
-export default function NewCard({ index, track, setIsClicked }) {
+
+interface ICard{
+  index: number,
+  track: ITracks,
+  setIsClicked : Dispatch<boolean>,
+}
+
+
+export default function NewCard({ index, track, setIsClicked }: ICard):JSX.Element {
   const background = {
     backgroundImage: `url(${
       track.album.picture ? track.album.picture : "/rocket.png"
@@ -21,7 +31,7 @@ export default function NewCard({ index, track, setIsClicked }) {
     <div className="mx-4 bg-Gray relative hover:scale-110  rounded-sm p-2 w-60 h-full">
       <div
         onMouseDown={() => setIsClicked(true)}
-        onMouseUp={() => setIsClicked(true)}
+        onMouseUp={() => setIsClicked(false)}
         style={background}
         className=" rounded-md w-full h-4/6"
       ></div>

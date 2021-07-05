@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { useEffect, useState } from "react";
+import { Ref, useEffect, useState } from "react";
 import secondToHMS from "../../utils/secontToHMS";
 import {
   trackIndex,
@@ -7,8 +7,9 @@ import {
   isPlaying,
   playerState,
 } from "../../State/States";
+import { EventType } from "next-auth";
 
-export default function Playbar({ audioRef }) {
+export default function Playbar({ audioRef }: any):JSX.Element {
   const [tracks] = useRecoilState(trackList);
   const [index, setIndex] = useRecoilState(trackIndex);
   const [playing, setPlaying] = useRecoilState(isPlaying);
@@ -27,17 +28,17 @@ export default function Playbar({ audioRef }) {
     }
     setIndex((c) => c - 1);
   };
-  const positionChange = (e) => {
-    setPlayer({ ...player, currentTime: e.target.value });
+  const positionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPlayer({ ...player, currentTime: parseInt(e.target.value) });
     audioRef.current.currentTime = e.target.value;
   };
 
-  const handleVolume = (e) => {
-    if (e.target.value < 3) {
+  const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (parseInt(e.target.value) < 3) {
       setVolume(0);
       return (audioRef.current.volume = volume);
     }
-    setVolume(e.target.value / 100);
+    setVolume(parseInt(e.target.value) / 100);
     audioRef.current.volume = volume;
   };
 
@@ -56,25 +57,25 @@ export default function Playbar({ audioRef }) {
           alt=""
         />
 
-        <div className="flex-row hidden w-6/12 md:flex justify-center overflow-hidden item-center align-middle ">
+        <div className="flex-row hidden w-4/12 md:flex justify-center overflow-hidden item-center align-middle ">
           <div className="flex w-full overflow-hidden ">
-            <div className="text-white whitespace-nowrap text-2xl text-center   txt font-cuprum  ">
+            <div className="text-white whitespace-nowrap text-xl text-center   txt font-cuprum  ">
               {tracks[index].title} - {tracks[index].artist.name} -{" "}
               {tracks[index].album.title}&nbsp;
             </div>
-            <div className="text-white whitespace-nowrap text-2xl text-center txt font-cuprum   ">
+            <div className="text-white whitespace-nowrap text-xl text-center txt font-cuprum   ">
               {tracks[index].title} - {tracks[index].artist.name} -{" "}
               {tracks[index].album.title}&nbsp;
             </div>
           </div>
         </div>
 
-        <div className="w-6/12 hidden md:flex align-middle h-full item-center justify-center mr-3">
-          <div className="w-4/5 mr-6 h-full flex align-middle item-center justify-center">
-            <div className="endTime h-full text-white mx-2 flex flex-col items-center justify-center align-middle">
+        <div className="w-4/12  flex align-middle h-full item-center justify-center mr-3">
+          <div className="w-full  h-full flex align-middle item-center justify-center">
+            <div className=" h-full text-white mx-2 flex flex-col items-center justify-center align-middle">
               {secondToHMS(player.currentTime)}
             </div>
-            <div className="flex flex-col items-center justify-center align-middle">
+            <div className="hidden  md:flex flex-col items-center justify-center align-middle">
               {" "}
               <input
                 type="range"
@@ -82,8 +83,8 @@ export default function Playbar({ audioRef }) {
                 onChange={positionChange}
                 max={player.duration}
                 value={player.currentTime}
-                className=" h-1.5 bg-white   rounded slider"
-                id="myRange"
+                className=" h-1   rounded slider"
+                
               ></input>
             </div>
             {showVolume && (
@@ -94,17 +95,17 @@ export default function Playbar({ audioRef }) {
                   min="0"
                   onChange={handleVolume}
                   max="100"
-                  className=" h-1.5 bg-white transform rotate-90 rounded slider"
-                  id="myRange"
+                  className=" h-1.5 bg-white transform -rotate-90 rounded slider"
+                  
                 ></input>
               </div>
             )}
-            <div className="endTime flex flex-col items-center mx-2 justify-center align-middle">
+            <div className=" flex flex-col items-center mx-2 justify-center align-middle">
               {secondToHMS(player.duration)}
             </div>
           </div>
         </div>
-        <div className="flex w-full md:w-1/2 items-center mr-10 align-middle justify-end">
+        <div className="flex w-4/12  items-center mr-10 align-middle justify-end">
           <img
             className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={handleBackward}
