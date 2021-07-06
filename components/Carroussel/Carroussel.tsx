@@ -17,13 +17,6 @@ export default function Carroussel() {
       ref={scrollWrapperRef}
       className=" w-full my-2 flex-col  items-center align-middle sidebar md:border-gray-600 flex p-4 overflow-y-hidden overflow-x-auto rounded-xl "
     >
-      <div className="w-full my-4 flex md:flex-row-reverse flex-col items-center align-middle justify-between ">
-        <SearchBar />
-        <div className="bg-gray-400 px-4 my-2 md:my-0 py-2 text-xl text-white font-Share rounded-tl-xl flex justify-center  rounded-tr-xl rounded-bl-xl border-2">
-          {" "}
-          TOP 10
-        </div>
-      </div>
       <div className=" flex  items-center align-middle px-4 h-full">
         {tracks[0] &&
           tracks
