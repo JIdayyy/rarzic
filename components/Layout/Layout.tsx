@@ -34,7 +34,7 @@ export default function Layout({ page, children }: IProps): JSX.Element {
     return <Loading />;
   }
   return (
-    <div className="w-full bg-rocket bg-cover overflow-x-hidden bg-center flex flex-col items-center align-middle justify-between h-screen">
+    <div className="w-full bg-rocket bg-cover overflow-x-hidden bg-center flex flex-col items-center align-middle justify-between max-h-screen h-screen">
       <Head>
         <title>{page}</title>
       </Head>
