@@ -1,7 +1,11 @@
 interface IError {
   message: string;
 }
-
+interface IAlbum {
+  id: string;
+  title: string;
+  picture: string;
+}
 interface ITracks {
   id: string;
   album: {
@@ -18,10 +22,10 @@ interface ITracks {
   title: string;
 }
 
-interface Session{
- user: {
-  firstname: string ,
-  email: string ,
-  image: string 
- }
+interface Session {
+  user: {
+    firstname: string;
+    email: string;
+    image: string;
+  };
 }

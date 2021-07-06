@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { Dispatch } from "react";
 import { useRecoilState } from "recoil";
-import { trackIndex, isPlaying } from "../../State/States";
+import { trackIndex, isPlaying } from "../../../State/States";
 
 interface ICard {
   index: number;
-  track: ITracks;
+  track?: ITracks;
+  album?: IAlbum;
   setIsClicked: Dispatch<boolean>;
 }
 
