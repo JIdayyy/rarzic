@@ -15,7 +15,7 @@ export default function Playbar({ audioRef }: any): JSX.Element {
   const [player, setPlayer] = useRecoilState(playerState);
   const [showVolume, setShowVolume] = useState(false);
   const [volume, setVolume] = useState(0);
-  console.log(tracks);
+
   const handleForward = () => {
     if (index === tracks.length - 1) {
       return setIndex(0);
@@ -49,7 +49,7 @@ export default function Playbar({ audioRef }: any): JSX.Element {
       handleForward();
     }
   }, [player]);
-  console.log(secondToHMS(player.currentTime));
+
   return (
     <div className="w-full absolute  overflow-x-hidden font-Share text-white text-xl flex justify-center bottom-0 h-20 items-center  bg-Gray">
       <div className="flex items-center justify-between align-middle  h-full  w-full ">
@@ -109,7 +109,7 @@ export default function Playbar({ audioRef }: any): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="flex w-4/12  items-center mr-10 align-middle justify-end">
+        <div className="flex w-4/12  items-center mr-10 align-middle justify-center">
           <img
             className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={handleBackward}
@@ -140,8 +140,13 @@ export default function Playbar({ audioRef }: any): JSX.Element {
           />
           <img
             onClick={() => setShowVolume((c) => !c)}
-            className="w-5 active:scale-90 mx-4 cursor-pointer"
-            src="/volume.png"
+            className="w-6 active:scale-90 mx-4 cursor-pointer"
+            src="/controls/volume.png"
+            alt=""
+          />
+          <img
+            className="w-8 active:scale-90 mx-4 cursor-pointer"
+            src="/controls/upload.png"
             alt=""
           />
         </div>

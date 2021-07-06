@@ -28,6 +28,8 @@ export default function NewCard({
     setTrackStateIndex(index);
     setIsPlaying(true);
   };
+  const trackDuration = track.duration.split(".")[0];
+
   return (
     <div className="mx-4 bg-Gray relative hover:scale-110   rounded-sm p-2 w-60 h-96">
       <div
@@ -40,7 +42,7 @@ export default function NewCard({
         <span className="font-bold  w-full"> {track.artist.name}</span>
         <span className="text-sm overflow-ellipsis  w-full">{track.title}</span>
         <span className="text-sm overflow-ellipsis w-full">
-          {track.duration}
+          {trackDuration}
         </span>
       </div>
       <div className="w-full items-end justify-end flex  ">
