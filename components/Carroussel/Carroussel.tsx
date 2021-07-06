@@ -17,7 +17,7 @@ export default function Carroussel() {
       ref={scrollWrapperRef}
       className=" w-full my-2 flex-col  items-center align-middle sidebar md:border-gray-600 flex p-4 overflow-y-hidden overflow-x-auto rounded-xl "
     >
-      <div className=" flex  items-center align-middle px-4 h-full">
+      <div className=" flex w-full  align-middle px-4 h-full">
         {tracks[0] &&
           tracks
             .filter(
