@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch } from "react";
 import { useRecoilState } from "recoil";
 import { trackIndex, isPlaying } from "../../State/States";
 
