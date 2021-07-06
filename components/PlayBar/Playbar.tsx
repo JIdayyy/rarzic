@@ -51,21 +51,21 @@ export default function Playbar({ audioRef }: any): JSX.Element {
   }, [player]);
 
   return (
-    <div className="w-full absolute  overflow-x-hidden font-Share text-white text-xl flex justify-center bottom-0 h-20 items-center  bg-Gray">
+    <div className="w-full absolute  overflow-x-hidden font-Share text-white text-lg flex justify-center bottom-0 h-10 items-center  bg-Gray">
       <div className="flex items-center justify-between align-middle  h-full  w-full ">
         <img
-          className="w-20 flex h-full"
+          className="w-12 flex h-full"
           src={tracks[index].album.picture || "/rocket.png"}
           alt=""
         />
 
         <div className="flex-row hidden w-4/12 md:flex justify-center overflow-hidden item-center align-middle ">
           <div className="flex w-full overflow-hidden ">
-            <div className="text-white whitespace-nowrap text-xl text-center   txt font-cuprum  ">
+            <div className="text-white whitespace-nowrap text-base text-center   txt font-cuprum  ">
               {tracks[index].title} - {tracks[index].artist.name} -{" "}
               {tracks[index].album.title}&nbsp;
             </div>
-            <div className="text-white whitespace-nowrap text-xl text-center txt font-cuprum   ">
+            <div className="text-white whitespace-nowrap text-base text-center txt font-cuprum   ">
               {tracks[index].title} - {tracks[index].artist.name} -{" "}
               {tracks[index].album.title}&nbsp;
             </div>
@@ -74,7 +74,7 @@ export default function Playbar({ audioRef }: any): JSX.Element {
 
         <div className="w-4/12  flex align-middle h-full item-center justify-center mr-3">
           <div className="w-full  h-full flex align-middle item-center justify-center">
-            <div className=" hidden   md:flex flex-col items-center justify-center align-middle">
+            <div className=" hidden text-base  md:flex flex-col items-center justify-center align-middle">
               {player.currentTime === 0
                 ? "00:00"
                 : secondToHMS(player.currentTime)}
@@ -102,16 +102,16 @@ export default function Playbar({ audioRef }: any): JSX.Element {
                 ></input>
               </div>
             )}
-            <div className="hidden   md:flex flex-col items-center justify-center align-middle">
+            <div className="hidden text-base  md:flex flex-col items-center justify-center align-middle">
               {player.currentTime === 0
                 ? "00:00"
                 : secondToHMS(player.duration)}
             </div>
           </div>
         </div>
-        <div className="flex w-4/12  items-center mr-10 align-middle justify-center">
+        <div className="flex w-4/12  items-center mr-10 align-middle justify-end">
           <img
-            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
+            className="w-4 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={handleBackward}
             src={"/controls/backward.png"}
           />
@@ -130,23 +130,23 @@ export default function Playbar({ audioRef }: any): JSX.Element {
           )}
 
           <img
-            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
+            className="w-4 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={handleForward}
             src={"/controls/forward.png"}
           />
           <img
-            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
+            className="w-4 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             src={"/controls/repeat.png"}
           />
           <img
-            onClick={() => setShowVolume((c) => !c)}
             className="w-6 active:scale-90 mx-4 cursor-pointer"
-            src="/controls/volume.png"
+            src="/controls/upload.png"
             alt=""
           />
           <img
-            className="w-8 active:scale-90 mx-4 cursor-pointer"
-            src="/controls/upload.png"
+            onClick={() => setShowVolume((c) => !c)}
+            className="w-5 active:scale-90 mx-4 cursor-pointer"
+            src="/controls/volume.png"
             alt=""
           />
         </div>

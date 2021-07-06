@@ -31,7 +31,7 @@ export default function NewCard({
   const trackDuration = track.duration.split(".")[0];
 
   return (
-    <div className="mx-4 bg-Gray relative hover:scale-110   rounded-sm p-2 w-60 h-96">
+    <div className="mx-4 bg-Gray relative hover:scale-110   rounded-sm p-2 w-48 h-64">
       <div
         onMouseDown={() => setIsClicked(true)}
         onMouseUp={() => setIsClicked(false)}
@@ -39,23 +39,23 @@ export default function NewCard({
         className=" rounded-md w-full h-4/6"
       ></div>
       <div className="w-40 text-white flex flex-col font-Share justify-between items-center align-middle  overflow-ellipsis p-4  ">
-        <span className="font-bold  w-full"> {track.artist.name}</span>
-        <span className="text-sm overflow-ellipsis  w-full">{track.title}</span>
-        <span className="text-sm overflow-ellipsis w-full">
+        <span className="font-bold text-xs w-full"> {track.artist.name}</span>
+        <span className="text-xs overflow-ellipsis  w-full">{track.title}</span>
+        <span className="text-xs overflow-ellipsis w-full">
           {trackDuration}
         </span>
       </div>
       <div className="w-full items-end justify-end flex  ">
         <button
           onClick={handleClick}
-          className="absolute right-0  z-50 bottom-0 font-bold p-7 text-2xl"
+          className="absolute right-0  z-50 bottom-0 font-bold  text-lg"
         >
           <div className="  items-end justify-end active:bg-gray-600 active:scale-90 rounded-full p-3">
             <Image
               quality={100}
-              width={30}
+              width={20}
               className="hover:scale-110 active:scale"
-              height={25}
+              height={15}
               src={"/controls/play.png"}
             />
           </div>
