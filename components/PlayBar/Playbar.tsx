@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import secondToHMS from "../../utils/secontToHMS";
 import {
   trackIndex,
@@ -8,28 +8,27 @@ import {
   playerState,
 } from "../../State/States";
 
-
-export default function Playbar({ audioRef }: any):JSX.Element {
+export default function Playbar({ audioRef }: any): JSX.Element {
   const [tracks] = useRecoilState(trackList);
   const [index, setIndex] = useRecoilState(trackIndex);
   const [playing, setPlaying] = useRecoilState(isPlaying);
   const [player, setPlayer] = useRecoilState(playerState);
   const [showVolume, setShowVolume] = useState(false);
   const [volume, setVolume] = useState(0);
-  console.log(tracks)
+  console.log(tracks);
   const handleForward = () => {
     if (index === tracks.length - 1) {
       return setIndex(0);
     }
     setIndex((c) => c + 1);
-    audioRef.current.load()
+    audioRef.current.load();
   };
   const handleBackward = () => {
     if (index === 0) {
       return setIndex(tracks.length - 1);
     }
     setIndex((c) => c - 1);
-    audioRef.current.load()
+    audioRef.current.load();
   };
   const positionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlayer({ ...player, currentTime: parseInt(e.target.value) });
@@ -46,13 +45,13 @@ export default function Playbar({ audioRef }: any):JSX.Element {
   };
 
   useEffect(() => {
-    if (player.currentTime === player.duration) {
+    if (player.currentTime === player.duration && player.currentTime !== 0) {
       handleForward();
     }
   }, [player]);
-
+  console.log(secondToHMS(player.currentTime));
   return (
-    <div className="w-full absolute  overflow-x-hidden font-Share text-white text-xl flex justify-center bottom-0 h-16 items-center  bg-Gray">
+    <div className="w-full absolute  overflow-x-hidden font-Share text-white text-xl flex justify-center bottom-0 h-20 items-center  bg-Gray">
       <div className="flex items-center justify-between align-middle  h-full  w-full ">
         <img
           className="w-20 flex h-full"
@@ -75,10 +74,12 @@ export default function Playbar({ audioRef }: any):JSX.Element {
 
         <div className="w-4/12  flex align-middle h-full item-center justify-center mr-3">
           <div className="w-full  h-full flex align-middle item-center justify-center">
-            <div className=" h-full hidden m:flex text-white mx-2  flex-col items-center justify-center align-middle">
-              {secondToHMS(player.currentTime)}
+            <div className=" hidden   md:flex flex-col items-center justify-center align-middle">
+              {player.currentTime === 0
+                ? "00:00"
+                : secondToHMS(player.currentTime)}
             </div>
-            <div className="hidden  md:flex flex-col items-center justify-center align-middle">
+            <div className="hidden mx-4 w-6/12  md:flex flex-col items-center justify-center align-middle">
               {" "}
               <input
                 type="range"
@@ -87,7 +88,6 @@ export default function Playbar({ audioRef }: any):JSX.Element {
                 max={player.duration}
                 value={player.currentTime}
                 className=" h-1   rounded slider"
-                
               ></input>
             </div>
             {showVolume && (
@@ -99,43 +99,48 @@ export default function Playbar({ audioRef }: any):JSX.Element {
                   onChange={handleVolume}
                   max="100"
                   className=" h-1.5 bg-white transform -rotate-90 rounded slider"
-                  
                 ></input>
               </div>
             )}
-            <div className=" md:flex hidden flex-col items-center mx-2 justify-center align-middle">
-              {secondToHMS(player.duration)}
+            <div className="hidden   md:flex flex-col items-center justify-center align-middle">
+              {player.currentTime === 0
+                ? "00:00"
+                : secondToHMS(player.duration)}
             </div>
           </div>
         </div>
         <div className="flex w-4/12  items-center mr-10 align-middle justify-end">
           <img
-            className="w-3 cursor-pointer hover:scale-125 active:scale-90 mx-4"
+            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={handleBackward}
             src={"/controls/backward.png"}
           />
-          {playing ? <img
-            className="w-3 cursor-pointer hover:scale-125 active:scale-90 mx-4"
-            onClick={() => setPlaying(false)}
-            src={"/controls/pause.png"}
-          /> : <img
-            className="w-3 cursor-pointer hover:scale-125 active:scale-90 mx-4"
-            onClick={() => setPlaying(true)}
-            src={"/controls/play.png"}
-          />}
-          
+          {playing ? (
+            <img
+              className="w-4 cursor-pointer hover:scale-125 active:scale-90 mx-4"
+              onClick={() => setPlaying(false)}
+              src={"/controls/pause.png"}
+            />
+          ) : (
+            <img
+              className="w-4 cursor-pointer hover:scale-125 active:scale-90 mx-4"
+              onClick={() => setPlaying(true)}
+              src={"/controls/play.png"}
+            />
+          )}
+
           <img
-            className="w-3 cursor-pointer hover:scale-125 active:scale-90 mx-4"
+            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             onClick={handleForward}
             src={"/controls/forward.png"}
           />
           <img
-            className="w-3 cursor-pointer hover:scale-125 active:scale-90 mx-4"
+            className="w-5 cursor-pointer hover:scale-125 active:scale-90 mx-4"
             src={"/controls/repeat.png"}
           />
           <img
             onClick={() => setShowVolume((c) => !c)}
-            className="w-3 active:scale-90 mx-4 cursor-pointer"
+            className="w-5 active:scale-90 mx-4 cursor-pointer"
             src="/volume.png"
             alt=""
           />
