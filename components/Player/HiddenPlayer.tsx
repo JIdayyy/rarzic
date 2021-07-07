@@ -37,7 +37,7 @@ export default function HiddenPlayer({ audioRef }: any): JSX.Element {
   }, [sliderValue, audioRef]);
 
   return (
-    <div className="z-50 absolute h-10 w-96">
+    <div className="z-50 pointer-events-none absolute h-10 w-96">
       <audio
         ref={audioRef}
         className="w-96  h-10"

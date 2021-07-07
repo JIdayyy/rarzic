@@ -64,7 +64,7 @@ export default function Playbar({}: any): JSX.Element {
           alt=""
         />
 
-        <div className="flex-row hidden w-4/12 md:flex justify-center overflow-hidden item-center align-middle ">
+        <div className="flex-row pointer-events-none hidden w-4/12 md:flex justify-center overflow-hidden item-center align-middle ">
           <div className="flex w-full overflow-hidden ">
             <div className="text-white whitespace-nowrap text-base text-center   txt font-cuprum  ">
               {tracks[index].title} -{" "}
