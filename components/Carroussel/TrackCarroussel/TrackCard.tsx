@@ -37,7 +37,10 @@ export default function NewCard({
   const trackDuration = track?.duration.split(".")[0];
 
   return (
-    <div className="mx-4 bg-Gray relative hover:scale-110   rounded-sm p-2 w-48 h-64">
+    <div
+      onClick={handleClick}
+      className="mx-4 bg-Gray relative hover:scale-110 cursor-pointer   rounded-sm p-2 w-48 h-64"
+    >
       <div
         onMouseDown={() => setIsClicked(true)}
         onMouseUp={() => setIsClicked(false)}
@@ -54,10 +57,7 @@ export default function NewCard({
         </span>
       </div>
       <div className="w-full items-end justify-end flex  ">
-        <button
-          onClick={handleClick}
-          className="absolute right-0  z-50 bottom-0 font-bold  text-lg"
-        >
+        <button className="absolute right-0  z-50 bottom-0 font-bold  text-lg">
           <div className="  items-end justify-end active:bg-gray-600 active:scale-90 rounded-full p-3">
             <Image
               quality={100}

@@ -1,21 +1,23 @@
 /* width */
 .sidebar::-webkit-scrollbar {
-    width: 10px;
-    height: 8px;
-  }
-  
-  /* Track */
-  .sidebar::-webkit-scrollbar-track {
-    background: none;
-  }
-  
-  /* Handle */
-  .sidebar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-  }
-  
-  /* Handle on hover */
-  .sidebar::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.08);
-  }
+  width: 10px;
+  height: 8px;
+}
+
+/* Track */
+.sidebar::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgb(224, 136, 136);
+  border-radius: 20px;
+  border: 1px solid rgb(177, 177, 127);
+}
+
+/* Handle on hover */
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgb(224, 136, 136);
+  border: 1px solid rgb(177, 177, 127);
+}
