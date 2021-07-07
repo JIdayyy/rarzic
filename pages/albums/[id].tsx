@@ -3,7 +3,7 @@ import { NextPageContext } from "next";
 import { Params } from "next/dist/next-server/server/router";
 import { ContextType, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { trackList } from "../../State/States";
+import { trackIndex, trackList } from "../../State/States";
 import Link from "next/link";
 import { useQuery } from "react-query";
 import { isPlaying, playerState } from "../../State/States";
@@ -11,6 +11,7 @@ import { useRef } from "react";
 export default function Playlist({ album }: any) {
   const [playing, setPlaying] = useRecoilState(isPlaying);
   const [tracks, setTracks] = useRecoilState(trackList);
+  const [index, setIndex] = useRecoilState(trackIndex);
   const [player, setPlayer] = useRecoilState(playerState);
   const audioRef = useRef();
   const { data, isLoading } = useQuery("artists", () =>
@@ -22,9 +23,15 @@ export default function Playlist({ album }: any) {
       },
     })
   );
+  const handleClick = (e: any) => {
+    setTracks(album.songs);
+    setIndex(parseInt(e.target.value));
+    setPlaying(true);
+  };
+  console.log(tracks);
   const background = {
     backgroundImage: `url(${
-      isLoading || data.data.picture ? "/bg_album.png" : data.data.picture
+      isLoading || data?.data.picture ? "/bg_album.png" : data?.data.picture
     })`,
     backgroundSize: `cover`,
     backgroundRepeat: `no-repeat`,
@@ -64,7 +71,7 @@ export default function Playlist({ album }: any) {
             <div className=" flex-col p-5 items-center flex justify-center align-middle text-4xl w-full">
               <div className="text-2xl h-full w-full ">{album.title}</div>
               <div className="w-full h-full">
-                {!isLoading && data.data.name}
+                {!isLoading && data?.data.name}
               </div>
             </div>
           </div>
@@ -82,12 +89,25 @@ export default function Playlist({ album }: any) {
         </div>
         <div className="flex w-full bg-Dark_gray h-full ">
           <ul className="w-full p-5 flex flex-col">
-            {album.songs.map((song) => {
+            {album.songs.map((song: IAlbum, index: number) => {
               return (
-                <li className="w-full flex items-center justify-between align-middle">
-                  <img className="w-10 my-2" src={album.picture} alt="" />
-                  <div className="w-full my-2 mx-4">{song.title}</div>
-                  <div className="w-full my-2 mx-4">{song.duration}</div>
+                <li
+                  key={index}
+                  onClick={handleClick}
+                  value={index}
+                  className="w-full flex items-center justify-between align-middle"
+                >
+                  <img
+                    className="w-10 pointer-events-none my-2"
+                    src={album.picture}
+                    alt=""
+                  />
+                  <div className="w-full pointer-events-none my-2 mx-4">
+                    {song.title}
+                  </div>
+                  <div className="w-full pointer-events-none my-2 mx-4">
+                    {song.duration}
+                  </div>
                 </li>
               );
             })}

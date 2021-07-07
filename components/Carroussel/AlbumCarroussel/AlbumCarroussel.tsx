@@ -3,12 +3,17 @@ import { useRef, useState } from "react";
 import { onSearch, trackList } from "../../../State/States";
 import useScrollBox from "../../../utils/scroll";
 import NewCard from "./AlbumCard";
-import Link from "next/link";
+
 import Loading from "../../Loading/Loading";
 import axios from "axios";
 import { useQuery } from "react-query";
-export default function Carroussel({ ressource }) {
-  const scrollWrapperRef = useRef();
+
+interface IMap {
+  album: object;
+  index: number;
+}
+export default function Carroussel({ ressource }: { ressource: string }) {
+  const scrollWrapperRef = useRef<HTMLDivElement>(null);
   const { isDragging } = useScrollBox(scrollWrapperRef);
   const [, setIsClicked] = useState<boolean>(false);
   const [search] = useRecoilState(onSearch);
@@ -21,7 +26,7 @@ export default function Carroussel({ ressource }) {
       },
     })
   );
-  console.log(data);
+
   return (
     <div
       ref={scrollWrapperRef}
@@ -29,9 +34,11 @@ export default function Carroussel({ ressource }) {
     >
       <div className=" flex w-full  align-middle px-4 h-full">
         {!isLoading ? (
-          data.data
-            .filter((album) => album.title.toLowerCase().includes(search))
-            .map((album, index) => {
+          data?.data
+            .filter((album: IAlbum) =>
+              album.title.toLowerCase().includes(search)
+            )
+            .map((album: IAlbum, index: number) => {
               return (
                 <div className="h-full" key={index}>
                   <NewCard

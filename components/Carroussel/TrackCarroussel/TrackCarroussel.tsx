@@ -3,12 +3,11 @@ import { useRef, useState } from "react";
 import { onSearch, trackList } from "../../../State/States";
 import useScrollBox from "../../../utils/scroll";
 import TrackCard from "../TrackCarroussel/TrackCard";
-import SearchBar from "../../SearchBar/SearchBar";
 import Loading from "../../Loading/Loading";
 import axios from "axios";
 import { useQuery } from "react-query";
-export default function Carroussel({ ressource }) {
-  const scrollWrapperRef = useRef();
+export default function Carroussel({ ressource }: { ressource: string }) {
+  const scrollWrapperRef = useRef<HTMLDivElement>(null);
   const { isDragging } = useScrollBox(scrollWrapperRef);
   const [, setIsClicked] = useState<boolean>(false);
   const [search] = useRecoilState(onSearch);
@@ -29,14 +28,14 @@ export default function Carroussel({ ressource }) {
     >
       <div className=" flex w-full  align-middle px-4 h-full">
         {!isLoading ? (
-          data.data
+          data?.data
             .filter(
-              (track) =>
+              (track: ITracks) =>
                 track.title.toLowerCase().includes(search) ||
                 track.album.title.toLowerCase().includes(search) ||
                 track.artist.name.toLowerCase().includes(search)
             )
-            .map((track, index) => {
+            .map((track: ITracks, index: number) => {
               return (
                 <div className="h-full" key={index}>
                   <TrackCard

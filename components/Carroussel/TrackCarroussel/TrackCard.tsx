@@ -17,7 +17,7 @@ export default function NewCard({
 }: ICard): JSX.Element {
   const background = {
     backgroundImage: `url(${
-      track.album.picture ? track.album.picture : "/rocket.png"
+      track?.album.picture ? track.album.picture : "/rocket.png"
     })`,
     backgroundSize: `cover`,
     backgroundRepeat: `no-repeat`,
@@ -29,7 +29,7 @@ export default function NewCard({
     setTrackStateIndex(index);
     setIsPlaying(true);
   };
-  const trackDuration = track.duration.split(".")[0];
+  const trackDuration = track?.duration.split(".")[0];
 
   return (
     <div className="mx-4 bg-Gray relative hover:scale-110   rounded-sm p-2 w-48 h-64">
@@ -40,8 +40,10 @@ export default function NewCard({
         className=" rounded-md w-full h-4/6"
       ></div>
       <div className="w-40 text-white flex flex-col font-Share justify-between items-center align-middle  overflow-ellipsis p-4  ">
-        <span className="font-bold text-xs w-full"> {track.artist.name}</span>
-        <span className="text-xs overflow-ellipsis  w-full">{track.title}</span>
+        <span className="font-bold text-xs w-full"> {track?.artist.name}</span>
+        <span className="text-xs overflow-ellipsis  w-full">
+          {track?.title}
+        </span>
         <span className="text-xs overflow-ellipsis w-full">
           {trackDuration}
         </span>

@@ -22,27 +22,27 @@ export default function Playbar({}: any): JSX.Element {
       return setIndex(0);
     }
     setIndex((c) => c + 1);
-    audioRef.current.load();
+    audioRef.current?.load();
   };
   const handleBackward = () => {
     if (index === 0) {
       return setIndex(tracks.length - 1);
     }
     setIndex((c) => c - 1);
-    audioRef.current.load();
+    audioRef.current?.load();
   };
   const positionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlayer({ ...player, currentTime: parseInt(e.target.value) });
-    audioRef.current.currentTime = parseInt(e.target.value);
+    audioRef.current!.currentTime = parseInt(e.target.value);
   };
 
   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (parseInt(e.target.value) < 3) {
       setVolume(0);
-      return (audioRef.current.volume = volume);
+      return (audioRef.current!.volume = volume);
     }
     setVolume(parseInt(e.target.value) / 100);
-    audioRef.current.volume = volume;
+    audioRef.current!.volume = volume;
   };
 
   useEffect(() => {
@@ -56,19 +56,38 @@ export default function Playbar({}: any): JSX.Element {
       <div className="flex items-center justify-between align-middle  h-full  w-full ">
         <img
           className="w-12 flex h-full"
-          src={tracks[index].album.picture || "/rocket.png"}
+          src={
+            typeof tracks[index].album === "undefined"
+              ? "/rocket.png"
+              : tracks[index].album.picture
+          }
           alt=""
         />
 
         <div className="flex-row hidden w-4/12 md:flex justify-center overflow-hidden item-center align-middle ">
           <div className="flex w-full overflow-hidden ">
             <div className="text-white whitespace-nowrap text-base text-center   txt font-cuprum  ">
-              {tracks[index].title} - {tracks[index].artist.name} -{" "}
-              {tracks[index].album.title}&nbsp;
+              {tracks[index].title} -{" "}
+              {typeof tracks[index].album === "undefined"
+                ? ""
+                : tracks[index].artist.name}{" "}
+              -{" "}
+              {typeof tracks[index].album === "undefined"
+                ? ""
+                : tracks[index].album.title}
+              &nbsp;
             </div>
-            <div className="text-white whitespace-nowrap text-base text-center txt font-cuprum   ">
-              {tracks[index].title} - {tracks[index].artist.name} -{" "}
-              {tracks[index].album.title}&nbsp;
+
+            <div className="text-white whitespace-nowrap text-base text-center   txt font-cuprum  ">
+              {tracks[index].title} -{" "}
+              {typeof tracks[index].album === "undefined"
+                ? ""
+                : tracks[index].artist.name}{" "}
+              -{" "}
+              {typeof tracks[index].album === "undefined"
+                ? ""
+                : tracks[index].album.title}
+              &nbsp;
             </div>
           </div>
         </div>

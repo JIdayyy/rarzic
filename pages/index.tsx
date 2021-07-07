@@ -20,7 +20,7 @@ export default function Home({ datas, session }: IProps) {
   const [err] = useState<IError>();
 
   useEffect(() => {
-    setTracks(datas);
+    if (tracks.length === 0) setTracks(datas);
   }, []);
   if (err) {
     return <Error message={err.message} />;
