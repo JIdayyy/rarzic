@@ -3,7 +3,6 @@ import HiddenPlayer from "../components/Player/HiddenPlayer";
 import { useRecoilState } from "recoil";
 import { useState, useRef, useEffect } from "react";
 import { trackList } from "../State/States";
-import Playbar from "../components/PlayBar/Playbar";
 import Error from "../components/Error/Error";
 import Loading from "../components/Loading/Loading";
 import axios from "axios";
@@ -19,7 +18,6 @@ interface IProps {
 export default function Home({ datas, session }: IProps) {
   const [tracks, setTracks] = useRecoilState(trackList);
   const [err] = useState<IError>();
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     setTracks(datas);
@@ -39,6 +37,7 @@ export default function Home({ datas, session }: IProps) {
             {" "}
             TOP 10
           </div>
+          <SearchBar />
         </div>
         {tracks[0] && <TrackCarroussel ressource="songs" />}
         <div className="w-full my-4 flex md:flex-row flex-col  ">
@@ -49,8 +48,6 @@ export default function Home({ datas, session }: IProps) {
         </div>
         {tracks[0] && <AlbumCarroussel ressource="albums" />}
       </div>
-      {tracks[0] && <HiddenPlayer audioRef={audioRef} />}
-      <Playbar audioRef={audioRef} />
     </div>
   );
 }

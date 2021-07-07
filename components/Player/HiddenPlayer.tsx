@@ -1,9 +1,7 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { trackIndex, trackList, isPlaying } from "../../State/States";
 import { playerState } from "../../State/States";
-
-
 
 export default function HiddenPlayer({ audioRef }: any): JSX.Element {
   const [tracks] = useRecoilState(trackList);
@@ -39,7 +37,7 @@ export default function HiddenPlayer({ audioRef }: any): JSX.Element {
   }, [sliderValue, audioRef]);
 
   return (
-    <div className="z-50 absolute h-32 w-96">
+    <div className="z-50 absolute h-10 w-96">
       <audio
         ref={audioRef}
         className="w-96  h-10"

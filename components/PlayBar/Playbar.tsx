@@ -1,5 +1,6 @@
 import { useRecoilState } from "recoil";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import HiddenPlayer from "../Player/HiddenPlayer";
 import secondToHMS from "../../utils/secontToHMS";
 import {
   trackIndex,
@@ -8,14 +9,14 @@ import {
   playerState,
 } from "../../State/States";
 
-export default function Playbar({ audioRef }: any): JSX.Element {
+export default function Playbar({}: any): JSX.Element {
   const [tracks] = useRecoilState(trackList);
   const [index, setIndex] = useRecoilState(trackIndex);
   const [playing, setPlaying] = useRecoilState(isPlaying);
   const [player, setPlayer] = useRecoilState(playerState);
   const [showVolume, setShowVolume] = useState(false);
   const [volume, setVolume] = useState(0);
-
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const handleForward = () => {
     if (index === tracks.length - 1) {
       return setIndex(0);
@@ -32,7 +33,7 @@ export default function Playbar({ audioRef }: any): JSX.Element {
   };
   const positionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlayer({ ...player, currentTime: parseInt(e.target.value) });
-    audioRef.current.currentTime = e.target.value;
+    audioRef.current.currentTime = parseInt(e.target.value);
   };
 
   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,20 +49,10 @@ export default function Playbar({ audioRef }: any): JSX.Element {
     if (player.currentTime === player.duration && player.currentTime !== 0) {
       return handleForward();
     }
-  
   }, [player]);
 
-  useEffect(() => {
-    if (
-      audioRef.current &&
-      Math.floor(audioRef.current.currentTime) !== player.currentTime
-    )
-      audioRef.current.currenTime = player.currentTime;
-    console.log(player.currentTime, Math.floor(audioRef.current.currentTime));
-  }, [playing]);
-
   return (
-    <div className="w-full absolute  overflow-x-hidden font-Share text-white text-lg flex justify-center bottom-0 h-10 items-center  bg-Gray">
+    <div className="w-full absolute  font-Share text-white text-lg flex justify-center bottom-0 h-10 items-center  bg-Gray">
       <div className="flex items-center justify-between align-middle  h-full  w-full ">
         <img
           className="w-12 flex h-full"
@@ -160,6 +151,7 @@ export default function Playbar({ audioRef }: any): JSX.Element {
             alt=""
           />
         </div>
+        {tracks[0] && <HiddenPlayer audioRef={audioRef} />}
       </div>
     </div>
   );
