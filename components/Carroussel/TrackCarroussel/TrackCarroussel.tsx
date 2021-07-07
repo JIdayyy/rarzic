@@ -42,6 +42,7 @@ export default function Carroussel({ ressource }: { ressource: string }) {
                     setIsClicked={setIsClicked}
                     track={track}
                     index={index}
+                    data={data.data}
                   />
                   <div className="hidden">{isDragging}</div>
                 </div>

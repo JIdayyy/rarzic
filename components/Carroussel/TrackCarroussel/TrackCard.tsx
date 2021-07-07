@@ -1,18 +1,20 @@
 import Image from "next/image";
 import { Dispatch } from "react";
 import { useRecoilState } from "recoil";
-import { trackIndex, isPlaying } from "../../../State/States";
+import { trackIndex, isPlaying, trackList } from "../../../State/States";
 
 interface ICard {
   index: number;
   track?: ITracks;
   album?: IAlbum;
+  data: ITracks[];
   setIsClicked: Dispatch<boolean>;
 }
 
 export default function NewCard({
   index,
   track,
+  data,
   setIsClicked,
 }: ICard): JSX.Element {
   const background = {
@@ -25,7 +27,10 @@ export default function NewCard({
   };
   const [, setIsPlaying] = useRecoilState(isPlaying);
   const [, setTrackStateIndex] = useRecoilState(trackIndex);
+  const [tracks, setTracks] = useRecoilState(trackList);
   const handleClick = () => {
+    setTracks(data);
+    console.log(tracks);
     setTrackStateIndex(index);
     setIsPlaying(true);
   };
