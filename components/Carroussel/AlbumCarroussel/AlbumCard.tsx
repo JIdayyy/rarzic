@@ -27,7 +27,7 @@ export default function NewCard({
     setalbumStateIndex(index);
     setIsPlaying(true);
   };
-  console.log(album);
+
   return (
     <Link href={`/albums/${album?.id}`}>
       <div className="mx-4 bg-Gray cursor-pointer relative hover:scale-110   rounded-sm p-2 w-48 h-64">

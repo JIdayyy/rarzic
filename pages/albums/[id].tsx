@@ -65,9 +65,8 @@ export default function Playlist({ album }: any) {
       </div>
       <div className="w-full lg:w-9/12 flex flex-col h-full bg-Gray lg:mr-10">
         <div className="  flex flex-col-reverse lg:flex-row w-full ">
-          <div className="w-full relative h-full  items-center align-middle justify-center lg:w-1/2 lg:p-5 flex ">
-            {/* <img className=" h-full" src={"/headphone2.png"} /> */}
-            <div className="h-full relative w-1/2 lg:w-4/12 ">
+          <div className="w-1/2 relative h-full  items-center align-middle justify-center lg:w-1/2 lg:p-5 flex ">
+            <div className="h-full relative   ">
               {" "}
               <Image layout="fill" src="/headphone2.png" />
             </div>

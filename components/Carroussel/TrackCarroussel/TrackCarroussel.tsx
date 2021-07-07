@@ -20,7 +20,7 @@ export default function Carroussel({ ressource }: { ressource: string }) {
       },
     })
   );
-  console.log(data);
+
   return (
     <div
       ref={scrollWrapperRef}

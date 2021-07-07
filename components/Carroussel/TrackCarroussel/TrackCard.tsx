@@ -30,7 +30,6 @@ export default function NewCard({
   const [tracks, setTracks] = useRecoilState(trackList);
   const handleClick = () => {
     setTracks(data);
-    console.log(tracks);
     setTrackStateIndex(index);
     setIsPlaying(true);
   };
