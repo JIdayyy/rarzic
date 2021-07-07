@@ -48,9 +48,7 @@ export default function Playbar({ audioRef }: any): JSX.Element {
     if (player.currentTime === player.duration && player.currentTime !== 0) {
       return handleForward();
     }
-    if (isPlaying) {
-      audioRef.current.play();
-    }
+  
   }, [player]);
 
   useEffect(() => {
