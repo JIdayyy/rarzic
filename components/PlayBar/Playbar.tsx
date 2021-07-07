@@ -46,9 +46,21 @@ export default function Playbar({ audioRef }: any): JSX.Element {
 
   useEffect(() => {
     if (player.currentTime === player.duration && player.currentTime !== 0) {
-      handleForward();
+      return handleForward();
+    }
+    if (isPlaying) {
+      audioRef.current.play();
     }
   }, [player]);
+
+  useEffect(() => {
+    if (
+      audioRef.current &&
+      Math.floor(audioRef.current.currentTime) !== player.currentTime
+    )
+      audioRef.current.currenTime = player.currentTime;
+    console.log(player.currentTime, Math.floor(audioRef.current.currentTime));
+  }, [playing]);
 
   return (
     <div className="w-full absolute  overflow-x-hidden font-Share text-white text-lg flex justify-center bottom-0 h-10 items-center  bg-Gray">

@@ -2,10 +2,20 @@ import axios from "axios";
 import { NextPageContext } from "next";
 import { Params } from "next/dist/next-server/server/router";
 import { ContextType, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { trackList } from "../../State/States";
+import HiddenPlayer from "../../components/Player/HiddenPlayer";
 import Link from "next/link";
+import Playbar from "../../components/PlayBar/Playbar";
 import Image from "next/image";
 import { useQuery } from "react-query";
+import { isPlaying, playerState } from "../../State/States";
+import { useRef } from "react";
 export default function Playlist({ album }: any) {
+  const [playing, setPlaying] = useRecoilState(isPlaying);
+  const [tracks, setTracks] = useRecoilState(trackList);
+  const [player, setPlayer] = useRecoilState(playerState);
+  const audioRef = useRef();
   const { data, isLoading } = useQuery("artists", () =>
     axios({
       url: `${process.env.NEXT_PUBLIC_API_URL}artists/${album.artistId}`,
@@ -21,6 +31,15 @@ export default function Playlist({ album }: any) {
     backgroundRepeat: `no-repeat`,
     backgroundPosition: `center`,
   };
+
+  useEffect(() => {
+    if (
+      audioRef.current &&
+      Math.floor(audioRef.current.currentTime) !== player.currentTime
+    )
+      audioRef.current.currenTime = player.currentTime;
+    console.log(player.currentTime, Math.floor(audioRef.current.currentTime));
+  }, [player]);
 
   return (
     <div className="w-full text-white justify-between items-center align-middle flex h-full">
@@ -48,6 +67,8 @@ export default function Playlist({ album }: any) {
         </div>
         <div></div>
       </div>
+      <Playbar audioRef={audioRef} />
+      {tracks[0] && <HiddenPlayer audioRef={audioRef} />}
     </div>
   );
 }
