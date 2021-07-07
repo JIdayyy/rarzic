@@ -16,7 +16,7 @@ export default function NewCard({
   setIsClicked,
 }: ICard): JSX.Element {
   const background = {
-    backgroundImage: `url(${album.picture ? album.picture : "/rocket.png"})`,
+    backgroundImage: `url(${album?.picture ? album?.picture : "/rocket.png"})`,
     backgroundSize: `cover`,
     backgroundRepeat: `no-repeat`,
     backgroundPosition: `center`,
@@ -37,8 +37,10 @@ export default function NewCard({
         className=" rounded-md w-full h-4/6"
       ></div>
       <div className="w-40 text-white flex flex-col font-Share justify-between items-center align-middle  overflow-ellipsis p-4  ">
-        <span className="text-xs overflow-ellipsis  w-full">{album.title}</span>
-        <Link href={`/albums/${album.id}`}>CHECK</Link>
+        <span className="text-xs overflow-ellipsis  w-full">
+          {album?.title}
+        </span>
+        <Link href={`/albums/${album?.id}`}>CHECK</Link>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ module.exports = {
       }),
       colors: {
         Gray: "#1F1F1F",
+        Dark_gray: '#141414'
       },
     },
     fontFamily: {

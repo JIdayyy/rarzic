@@ -2,6 +2,7 @@ interface IError {
   message: string;
 }
 interface IAlbum {
+  duration: string,
   id: string;
   title: string;
   picture: string;
