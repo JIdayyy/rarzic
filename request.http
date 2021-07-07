@@ -1,8 +1,0 @@
-GET https://api-bazify.basile.vernouillet.dev/api/v1/albums/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpJZGF5eXkiLCJpYXQiOjE2MjU1NDY0MDgsImV4cCI6MTYyNTYzMjgwOH0.iAuLFBYyfqMradXwq0jrsboHQQZvu0FG3TwxMRPLmx0
-
-
-###
-
-GET https://api-bazify.basile.vernouillet.dev/api/v1/artists/9000626d-c0b1-4d74-ae3c-38878ba002e0/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpJZGF5eXkiLCJpYXQiOjE2MjU1NDY0MDgsImV4cCI6MTYyNTYzMjgwOH0.iAuLFBYyfqMradXwq0jrsboHQQZvu0FG3TwxMRPLmx0
