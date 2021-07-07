@@ -88,14 +88,14 @@ export default function Playlist({ album }: any) {
           <div className="text-4xl">Tracks</div>
         </div>
         <div className="flex w-full bg-Dark_gray h-full ">
-          <ul className="w-full p-5 flex flex-col">
+          <ul className="w-full  flex flex-col">
             {album.songs.map((song: IAlbum, index: number) => {
               return (
                 <li
                   key={index}
                   onClick={handleClick}
                   value={index}
-                  className="w-full flex items-center justify-between align-middle"
+                  className="w-full px-5 hover:opacity-80 cursor-pointer hover:bg-Gray flex items-center justify-between align-middle"
                 >
                   <img
                     className="w-10 pointer-events-none my-2"
@@ -112,7 +112,7 @@ export default function Playlist({ album }: any) {
               );
             })}
           </ul>
-          <div style={background2} className="w-full h-full"></div>
+          <div style={background2} className="w-1/2 h-full"></div>
         </div>
       </div>
     </div>
