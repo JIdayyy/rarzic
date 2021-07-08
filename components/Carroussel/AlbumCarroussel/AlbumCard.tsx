@@ -30,7 +30,7 @@ export default function NewCard({
 
   return (
     <Link href={`/albums/${album?.id}`}>
-      <div className="mx-4 bg-Gray cursor-pointer relative hover:scale-110   rounded-sm p-2 w-48 h-64">
+      <div className="mx-4 bg-Dark_gray cursor-pointer relative hover:scale-110   rounded-sm p-2 w-48 h-64">
         <div
           onMouseDown={() => setIsClicked(true)}
           onMouseUp={() => setIsClicked(false)}

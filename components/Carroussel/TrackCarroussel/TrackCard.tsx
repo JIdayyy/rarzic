@@ -38,7 +38,7 @@ export default function NewCard({
   return (
     <div
       onClick={handleClick}
-      className="mx-4 bg-Gray relative hover:scale-110 cursor-pointer   rounded-sm p-2 w-48 h-64"
+      className="mx-4 bg-Dark_gray relative hover:scale-110 cursor-pointer   rounded-sm p-2 w-48 h-64"
     >
       <div
         onMouseDown={() => setIsClicked(true)}

@@ -63,7 +63,7 @@ export default function Playlist({ album }: any) {
           </li>
         </ul>
       </div>
-      <div className="w-full lg:w-9/12 flex flex-col h-full bg-Gray lg:mr-10">
+      <div className="w-full lg:w-9/12 flex flex-col h-full  bg-Gray lg:mr-10">
         <div className="  flex flex-col-reverse lg:flex-row w-full ">
           <div className="w-1/2 relative h-full  items-center align-middle justify-center lg:w-1/2 lg:p-5 flex ">
             <div className="h-full relative   ">
