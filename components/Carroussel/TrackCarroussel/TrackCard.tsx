@@ -38,13 +38,13 @@ export default function NewCard({
   return (
     <div
       onClick={handleClick}
-      className="mx-4 bg-Dark_gray relative hover:scale-110 cursor-pointer   rounded-sm p-2 w-48 h-64"
+      className="mx-4 bg-Dark_gray relative hover:scale-110 cursor-pointer shadow-searchbar  shadow-inner drop-shadow-2xl rounded-sm p-2 w-48 h-64"
     >
       <div
         onMouseDown={() => setIsClicked(true)}
         onMouseUp={() => setIsClicked(false)}
         style={background}
-        className=" rounded-md w-full h-4/6"
+        className="shadow-searchbar rounded-md w-full h-4/6"
       ></div>
       <div className="w-40 text-white flex flex-col font-Share justify-between items-center align-middle  overflow-ellipsis p-4  ">
         <span className="font-bold text-xs w-full"> {track?.artist.name}</span>
