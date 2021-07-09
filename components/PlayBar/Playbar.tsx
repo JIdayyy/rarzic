@@ -18,7 +18,7 @@ export default function Playbar({}: any): JSX.Element {
   const [volume, setVolume] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const handleForward = () => {
-    if (index === tracks.length) {
+    if (index === tracks.length - 1) {
       return setIndex(0);
     }
     setIndex((c) => c + 1);
