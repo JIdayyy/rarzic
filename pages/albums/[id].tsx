@@ -45,7 +45,7 @@ export default function Playlist({ album }: any) {
 
   return (
     <div className="w-full text-white  font-Share justify-between items-center align-middle flex h-full">
-      <div className="w-56 hidden lg:flex flex-col bg-Dark_gray items-start align-middle text-center  h-full">
+      <div className="w-56 hidden  lg:flex flex-col bg-Dark_gray items-start align-middle text-center  h-full">
         <ul className="w-full text-xl p-5 flex flex-col items-start justify-center align-middle h-80 full">
           <li className="flex w-full  mx-4 items-center align-middle justify-start">
             <img className="w-5 mx-4 my-4" src="/home.png" alt="" />
@@ -79,7 +79,7 @@ export default function Playlist({ album }: any) {
             </div>
           </div>
           <div
-            className="lg:w-1/2 w-full h-36 lg:h-full z-50 relative"
+            className="lg:w-1/2 w-full  h-36 lg:h-full z-50 relative"
             style={background}
           ></div>
         </div>
@@ -104,7 +104,7 @@ export default function Playlist({ album }: any) {
                   className="w-full px-5 hover:opacity-80 cursor-pointer hover:bg-Gray flex items-center justify-between align-middle"
                 >
                   <img
-                    className="w-10 pointer-events-none my-2"
+                    className="w-10 shadow-searchbar pointer-events-none my-2"
                     src={album.picture}
                     alt=""
                   />
@@ -120,7 +120,7 @@ export default function Playlist({ album }: any) {
           </ul>
           <div
             style={background2}
-            className="w-full hidden md:flex h-full"
+            className="w-full shadow-player hidden md:flex h-full"
           ></div>
         </div>
       </div>
