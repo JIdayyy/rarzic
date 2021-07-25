@@ -19,9 +19,9 @@ export default function Playlist({ album }: any) {
     axios({
       url: `${process.env.NEXT_PUBLIC_API_URL}artists/${album.artistId}`,
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
-      },
+      // headers: {
+      //   Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
+      // },
     })
   );
   const handleClick = (e: any) => {
@@ -133,12 +133,12 @@ export async function getServerSideProps(context: Params) {
   console.log(context.params);
   const data = await axios({
     method: "GET",
-    url: `${process.env.NEXT_PUBLIC_API_URL}albums/${id}`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}albums/${id}/songs`,
     headers: {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
     },
   });
-
+  console.log(data);
   return {
     props: {
       album: data.data,
