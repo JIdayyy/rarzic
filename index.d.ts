@@ -2,7 +2,7 @@ interface IError {
   message: string;
 }
 interface IAlbum {
-  duration: string,
+  duration: string;
   id: string;
   title: string;
   picture: string;
@@ -19,7 +19,7 @@ interface ITracks {
   };
   duration: string;
   playlists: Array<string>;
-  s3_link: string;
+  s3Link: string;
   title: string;
 }
 

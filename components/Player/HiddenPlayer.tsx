@@ -38,11 +38,7 @@ export default function HiddenPlayer({ audioRef }: any): JSX.Element {
 
   return (
     <div className="z-50 pointer-events-none absolute h-10 w-96">
-      <audio
-        ref={audioRef}
-        className="w-96  h-10"
-        src={tracks[index].s3_link}
-      />
+      <audio ref={audioRef} className="w-96  h-10" src={tracks[index].s3Link} />
     </div>
   );
 }

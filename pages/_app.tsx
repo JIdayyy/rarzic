@@ -8,7 +8,7 @@ import { RecoilRoot } from "recoil";
 import Layout from "../components/Layout/Layout";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { AppProps } from "next/dist/next-server/lib/router/router";
-import WithPlaybar from "../components/Layout/WithPlaybar";
+
 const queryClient = new QueryClient();
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (

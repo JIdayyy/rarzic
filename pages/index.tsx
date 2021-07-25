@@ -22,6 +22,7 @@ export default function Home({ datas, session }: IProps) {
   useEffect(() => {
     if (tracks.length === 0) setTracks(datas);
   }, []);
+
   if (err) {
     return <Error message={err.message} />;
   }
@@ -55,13 +56,13 @@ export default function Home({ datas, session }: IProps) {
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
   const data = await axios({
-    url: `${process.env.NEXT_PUBLIC_API_URL}songs`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}songs/player`,
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
-    },
+    // headers: {
+    //   Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
+    // },
   });
-
+  console.log(data);
   return {
     props: {
       datas: data.data,

@@ -18,9 +18,7 @@ export default function NewCard({
   setIsClicked,
 }: ICard): JSX.Element {
   const background = {
-    backgroundImage: `url(${
-      track?.album.picture ? track.album.picture : "/rocket.png"
-    })`,
+    backgroundImage: `url(${"/rocket.png"})`,
     backgroundSize: `cover`,
     backgroundRepeat: `no-repeat`,
     backgroundPosition: `center`,
@@ -34,7 +32,7 @@ export default function NewCard({
     setIsPlaying(true);
   };
   const trackDuration = track?.duration.split(".")[0];
-
+  console.log(track, data);
   return (
     <div
       onClick={handleClick}
@@ -47,13 +45,13 @@ export default function NewCard({
         className="shadow-searchbar rounded-md w-full h-4/6"
       ></div>
       <div className="w-40 text-white flex flex-col font-Share justify-between items-center align-middle  overflow-ellipsis p-4  ">
-        <span className="font-bold text-xs w-full"> {track?.artist.name}</span>
+        {/* <span className="font-bold text-xs w-full"> {track?.artist.name}</span>
         <span className="text-xs overflow-ellipsis  w-full">
           {track?.title}
         </span>
         <span className="text-xs overflow-ellipsis w-full">
           {trackDuration}
-        </span>
+        </span> */}
       </div>
       <div className="w-full items-end justify-end flex  ">
         <button className="absolute right-0  z-50 bottom-0 font-bold  text-lg">
